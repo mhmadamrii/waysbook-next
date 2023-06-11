@@ -1,0 +1,21 @@
+._wrapperContainer {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    padding: 0 20px;
+}
+
+._brandLogo {
+    width: 100px;
+    height: 80px;
+}
+
+._btnGroup {
+    display: flex;
+    gap: 10;
+    width: 220px;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
