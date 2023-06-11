@@ -6,9 +6,9 @@ const ModalLogin = (props) => {
   const { isOpenModalLogin, closeModal } = props;
   return (
     <>
-      <Modal show={isOpenModalLogin} onHide={closeModal} backdrop="static" keyboard={false}>
+      <Modal show={isOpenModalLogin} onHide={closeModal} backdrop="static" keyboard={false} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Login</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

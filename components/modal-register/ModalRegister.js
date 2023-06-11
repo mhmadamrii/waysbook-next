@@ -8,9 +8,9 @@ const ModalRegister = (props) => {
   const { isOpenModalRegister, closeModal } = props;
   return (
     <>
-      <Modal show={isOpenModalRegister} onHide={closeModal} backdrop="static" keyboard={false}>
+      <Modal show={isOpenModalRegister} onHide={closeModal} backdrop="static" keyboard={false} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Register</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
