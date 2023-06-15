@@ -1,0 +1,29 @@
+.thumbnail {
+    /* border: 1px solid red; */
+    margin-top: 100px;
+    text-align: center;
+}
+
+.imagesGroupWrapper {
+    /* border: 1px solid red; */
+    display: flex;
+    height: 400px;
+    gap: 30px;
+    margin-top: 200px;
+}
+
+.globalWrapper {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border: 1px solid blue;
+}
+.wrapperLayerLeft {
+    height: 500px;
+}
+
+.imgWrapper {
+    width: 600px;
+    height: 400px;
+}

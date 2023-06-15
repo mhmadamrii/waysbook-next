@@ -1,17 +1,14 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.css';
-
-
+import "bootstrap/dist/css/bootstrap.css";
 
 // screens
-import Homepage from "@/pages/homepage";
-import Authentication from "@/screens/authentication";
+import Homepage from "@/app/homepage/page";
+import Authentication from "@/app/authentication";
 
 export default function Home() {
-
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false);
 
   return isLogin ? <Homepage /> : <Authentication />;
 }
