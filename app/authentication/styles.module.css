@@ -1,29 +1,58 @@
 .thumbnail {
-    /* border: 1px solid red; */
-    margin-top: 100px;
-    text-align: center;
+  /* border: 1px solid red; */
+  margin-top: 100px;
+  text-align: center;
 }
 
 .imagesGroupWrapper {
-    /* border: 1px solid red; */
-    display: flex;
-    height: 400px;
-    gap: 30px;
-    margin-top: 200px;
+  /* border: 1px solid red; */
+  display: flex;
+  height: 400px;
+  gap: 30px;
+  margin-top: 80px;
 }
 
 .globalWrapper {
-    position: absolute;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    border: 1px solid blue;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* border: 1px solid blue; */
 }
 .wrapperLayerLeft {
-    height: 500px;
+  height: 500px;
 }
 
 .imgWrapper {
-    width: 600px;
-    height: 400px;
+  width: 600px;
+  height: 400px;
+}
+
+.staticUiGroupd {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.wrapperContentDesc {
+  width: 250px;
+  height: 270px;
+  /* border: 1px solid; */
+  padding: 10px;
+}
+
+.wrapperContentDesc h1 {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .thumbnail {
+    width: 300px;
+  }
+  .staticUiGroupd,
+  .imagesGroupWrapper {
+    display: none;
+  }
 }

@@ -1,4 +1,5 @@
 import './globals.css'
+import './index.scss'
 import { Inter } from 'next/font/google'
 import 'bootstrap/dist/css/bootstrap.css';
 

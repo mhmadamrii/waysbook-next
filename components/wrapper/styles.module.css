@@ -10,7 +10,17 @@
     height: 500px;
 }
 
-.imgWrapper {
+.img {
     width: 600px;
     height: 400px;
 }
+
+@media only screen and (max-width: 600px) {
+    /* .wrapperLayerLeft {
+      
+    } */
+
+    .img {
+        display: none;
+    }
+  }

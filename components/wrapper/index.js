@@ -8,11 +8,11 @@ export default function Wrapper() {
     <>
       <div className={styles.globalWrapper}>
         <div className={styles.wrapperLayerLeft}>
-          <Image src={LayerLeft} className={styles.imgWrapper} alt="book" />
+          <Image src={LayerLeft} className={styles.img} alt="book" />
         </div>
 
         <div className={styles.wrapperLayerRight}>
-          <Image src={LayerRight} className={styles.imgWrapper} alt="book" />
+          <Image src={LayerRight} className={styles.img} alt="book" />
         </div>
       </div>
     </>
