@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import { AppBar, AppBarNav, AppBarTitle, AppBarAction } from "@react-md/app-bar";
 import { MenuSVGIcon, MoreVertSVGIcon } from "@react-md/material-icons";
+import { useMediaQuery } from 'react-responsive'
 
 /* compoents */
 import ModalLogin from "../modal-login";
@@ -22,6 +23,7 @@ export const NavbarUser = () => {
 export const NavbarAuth = () => {
   const [isOpenModalLogin, setIsOpenModalLogin] = useState(false);
   const [isOpenModalRegister, setIsOpenModalRegister] = useState(false);
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 900 });
 
   const closeModal = () => {
     setIsOpenModalLogin(false);
@@ -29,17 +31,19 @@ export const NavbarAuth = () => {
   };
   return (
     <>
-      <div className="use-conditional-media-appbar">
-        <AppBar theme="clear">
-          <AppBarNav aria-label="Navigation">
-            <MenuSVGIcon />
-          </AppBarNav>
-          <AppBarTitle>Hello world</AppBarTitle>
-          <AppBarAction last aria-label="Actions">
-            <MoreVertSVGIcon />
-          </AppBarAction>
-        </AppBar>
-      </div>
+      {isTabletOrMobile ? (
+        <div className="use-conditional-media-appbar">
+          <AppBar theme="clear">
+            <AppBarNav aria-label="Navigation">
+              <MenuSVGIcon />
+            </AppBarNav>
+            <AppBarTitle>Hello world</AppBarTitle>
+            <AppBarAction last aria-label="Actions">
+              <MoreVertSVGIcon />
+            </AppBarAction>
+          </AppBar>
+        </div>
+      ) : null}
 
       <div className={styles._wrapperContainer}>
         <div>
