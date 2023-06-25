@@ -23,7 +23,6 @@
 
 @media only screen and (max-width: 600px) {
   .use-conditional-media-appbar {
-    /* border: 1px solid red; */
     display: inline-block;
     width: 100%;
   }

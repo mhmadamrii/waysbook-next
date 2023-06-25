@@ -10,11 +10,11 @@ export default function Wrapper() {
     <>
       <div className={styles.globalWrapper}>
         <div className={styles.wrapperLayerLeft}>
-          <Image src={LayerLeft} style={{ width: isTabletOrMobile ? 0 : 600, display: isTabletOrMobile ? "none" : "block" }} alt="book" />
+          <Image src={LayerLeft} className={styles.imgLeft} alt="book" />
         </div>
 
         <div className={styles.wrapperLayerRight}>
-          <Image src={LayerRight} style={{ width: isTabletOrMobile ? 0 : 600, display: isTabletOrMobile ? "none" : "block" }} className={styles.img} alt="book" />
+          <Image src={LayerRight} className={styles.imgRight} alt="book" />
         </div>
       </div>
     </>

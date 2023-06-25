@@ -7,20 +7,18 @@
   justify-content: space-between;
 }
 
-.wrapperLayerLeft {
-  height: 500px;
-  /* border: 1px solid blue; */
+.imgLeft {
+  width: 600px;
+  height: 800px;
 }
 
-/* .img {
+.imgRight {
   width: 600px;
-  height: 400px;
-  border: 1px solid red;
-} */
+  height: 800px;
+}
 
-@media only screen and (max-width: 600) {
-  .img {
-    border: 1px solid blue;
-    /* display: none; */
+@media only screen and (max-width: 900px) {
+  .imgLeft, .imgRight {
+    display: none;
   }
 }
