@@ -39,7 +39,7 @@ export const NavbarAuth = () => {
             </AppBarNav>
             <AppBarTitle>Hello world</AppBarTitle>
             <AppBarAction last aria-label="Actions">
-              <MoreVertSVGIcon />
+              <MoreVertSVGIcon onClick={() => setIsOpenModalLogin(true)} />
             </AppBarAction>
           </AppBar>
         </div>

@@ -45,7 +45,7 @@
 @media only screen and (max-width: 900px) {
   .thumbnail {
     width: 100%;
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
   .staticUiGroupd,
   .imagesGroupWrapper {
