@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 // screens
 import Homepage from "@/app/homepage/page";
-import Authentication from "@/app/authentication";
+import Authentication from "@/app/authentication/Auth";
 
 export default function Home() {
   const [isLogin, setIsLogin] = useState(false);

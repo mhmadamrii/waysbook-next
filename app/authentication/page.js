@@ -2,13 +2,27 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import "@/app/globals.css";
 
-/* assets */
-import Book1 from "@/assets/book1.png";
-import Book2 from "@/assets/book2.png";
-
 import { dummiesThumbnailBooks } from "@/dummies";
+import ListAvailableBooks from "@/components/list-available-books";
 
-export default function Authentication() {
+const getListOfBooks = async () => {
+  const baseURL = "https://express-creation.vercel.app/api/v1/users";
+  const secondUrl = "https://jsonplaceholder.typicode.com/posts";
+  const res = await fetch(secondUrl);
+  return res.json();
+};
+
+async function getDatas() {
+  const baseUrl = "https://jsonplaceholder.typicode.com/posts";
+  const res = await fetch(baseUrl);
+  return res.json();
+}
+export default async function Authentication(props) {
+  // const data = await getListOfBooks();
+  // console.log("dataaaa", data);
+  // const datas = await getDatas();
+  // console.log(datas);
+  console.log("fjdksf");
   return (
     <>
       <div className={styles.thumbnail}>
@@ -21,7 +35,7 @@ export default function Authentication() {
           {dummiesThumbnailBooks.map((item) => {
             return (
               <>
-                <div className={styles._wrappered}>
+                <div key={item?.key} className={styles._wrappered}>
                   <div className="img-hover-zoom">
                     <Image
                       src={item?.imgPath}
@@ -42,9 +56,7 @@ export default function Authentication() {
         </div>
       </div>
 
-      <div className={styles.bottomGroups}>
-        <h1>hello world</h1>
-      </div>
+      <div className={styles.bottomGroups}>{/* <ListAvailableBooks /> */}</div>
     </>
   );
 }

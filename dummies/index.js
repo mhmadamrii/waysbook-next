@@ -1,6 +1,7 @@
 /* assets */
 import Book1 from "@/assets/book1.png";
 import Book2 from "@/assets/book2.png";
+import Book3 from "@/assets/book3.png";
 
 export const dummiesThumbnailBooks = [
   {
@@ -19,6 +20,6 @@ export const dummiesThumbnailBooks = [
     id: 3,
     title: "Lorem ipsum dolor sit",
     desc: "Exercitation quis mollit fugiat incididunt eu adipisicing esse exercitation elit.",
-    imgPath: Book2,
+    imgPath: Book3,
   },
 ];
