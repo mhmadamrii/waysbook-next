@@ -12,3 +12,5 @@ export default function Home() {
 
   return isLogin ? <Homepage /> : <Authentication />;
 }
+
+// https://www.figma.com/file/rXl0nsOYHUzMoVrd1qwjP5/Ways-Books?type=design&node-id=0-1&mode=design

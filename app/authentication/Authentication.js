@@ -6,6 +6,8 @@ import "@/app/globals.css";
 import Book1 from "@/assets/book1.png";
 import Book2 from "@/assets/book2.png";
 
+import { dummiesThumbnailBooks } from "@/dummies";
+
 export default function Authentication() {
   return (
     <>
@@ -16,26 +18,32 @@ export default function Authentication() {
 
       <div className={styles.imagesGroupWrapper}>
         <div className={styles.staticUiGroupd}>
-          <div className="img-hover-zoom">
-            <Image src={Book1} className="img-hover-image" alt="book" />
-          </div>
+          {dummiesThumbnailBooks.map((item) => {
+            return (
+              <>
+                <div className={styles._wrappered}>
+                  <div className="img-hover-zoom">
+                    <Image
+                      src={item?.imgPath}
+                      className="img-hover-image"
+                      alt="book"
+                    />
+                  </div>
 
-          <div className={styles.wrapperContentDesc}>
-            <h1>Sebuah Seni untuk bersikap Bodo Amat</h1>
-            <span></span>
-            <p>Nisi officia commodo velit cillum tempor cillum qui in laboris. Ex minim ea sunt in. Anim ut ad reprehenderit sint laborum veniam fugiat aute dolor veniam sint laborum esse.</p>
-          </div>
+                  <div className={styles.wrapperContentDesc}>
+                    <h1>{item?.title}</h1>
+                    <span></span>
+                    <p>{item?.desc}</p>
+                  </div>
+                </div>
+              </>
+            );
+          })}
         </div>
+      </div>
 
-        <div className={styles.staticUiGroupd}>
-          <div className="img-hover-zoom">
-            <Image src={Book2} className="img-hover-image" alt="book" />
-          </div>
-
-          <div className={styles.wrapperContentDesc}>
-            <h1>Warm Heart</h1>
-          </div>
-        </div>
+      <div className={styles.bottomGroups}>
+        <h1>hello world</h1>
       </div>
     </>
   );
