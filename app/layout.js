@@ -3,6 +3,7 @@ import "./index.scss";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.css";
 import Link from "next/link";
+import { UserContextProvider } from "@/context/userContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,12 +13,19 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  if (typeof window !== "undefined") {
+    // Perform localStorage action
+    const item = localStorage.getItem("token-user");
+    console.log("item", item);
+  }
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        {children}
-      </body>
+      <UserContextProvider>
+        <body className={inter.className}>
+          <Navbar />
+          {children}
+        </body>
+      </UserContextProvider>
     </html>
   );
 }

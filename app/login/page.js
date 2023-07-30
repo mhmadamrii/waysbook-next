@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+
 import { Form, Button, Modal, Toast, ToastContainer } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 
@@ -45,7 +46,8 @@ export default function Page() {
         password: inputUser?.password,
       });
       if (res?.data?.status === "success") {
-        push("/homepage");
+        localStorage.setItem("token-user", res?.data?.token);
+        push(`/homepage/${res?.data?.user?.email}`);
         console.log("yey");
       }
       console.log("response login", res);
