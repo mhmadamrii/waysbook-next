@@ -18,7 +18,8 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "18.2.0",
     "react-md": "^5.1.5",
-    "react-responsive": "^9.0.2"
+    "react-responsive": "^9.0.2",
+    "use-hooks": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "sass": "^1.63.4"
