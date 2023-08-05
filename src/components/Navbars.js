@@ -1,7 +1,9 @@
 "use client";
 
+import { useUserContext } from "@/contexts/user-context";
 import { Container, Navbar, Button } from "react-bootstrap";
 import { useRouter, usePathname } from "next/navigation";
+
 import Logo from "@/public/assets/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,12 +11,21 @@ import Link from "next/link";
 export const NavbarAdmin = () => {
   const router = useRouter();
   const routerPathname = usePathname();
-  console.log(routerPathname);
-  console.log("router", router);
+  const { user, setUser, isLogin, setIsLogin } = useUserContext();
 
   const pushModal = () => {
     router.push("/authentication/modal-login");
   };
+
+  const handleSetUser = () => {
+    setUser({
+      name: "John",
+      age: 10,
+    });
+    setIsLogin(true);
+  };
+
+  console.log("user navbar", user);
   return (
     <>
       <Navbar>
@@ -29,7 +40,9 @@ export const NavbarAdmin = () => {
             <Button variant="outline-dark btn-groups-child" onClick={pushModal}>
               Login
             </Button>
-            <Button variant="dark btn-groups-child">Register</Button>
+            <Button variant="dark btn-groups-child" onClick={handleSetUser}>
+              Register
+            </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
