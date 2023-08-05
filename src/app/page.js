@@ -1,14 +1,14 @@
 "use client"
 
 import { useUserContext } from "@/contexts/user-context";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 
 
 export default function Homepage() {
   const router = useRouter()
   const { isLogin, user } = useUserContext()
   if (!isLogin) {
-    // router.push("/authentication")
+    redirect("/authentication")
   }
   return (
     <>
