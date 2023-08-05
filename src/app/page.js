@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 export default function Homepage() {
   const router = useRouter()
   const { isLogin, user } = useUserContext()
-  console.log('isLogin', isLogin)
   if (!isLogin) {
     router.push("/authentication")
   }
