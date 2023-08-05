@@ -2,6 +2,16 @@
   background-color: #E5E5E5;
 } */
 
+.btn-groups {
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+
+.btn-groups-child {
+  width: 100px;
+}
+
 .img-hover-zoom {
   height: 300px;
   overflow: hidden;

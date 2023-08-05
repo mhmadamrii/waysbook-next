@@ -2,6 +2,7 @@ import "./globals.css";
 import "./index.scss";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.css";
+import { NavbarAdmin } from "../components/Navbars";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ul>
-          <li>this is some navbar</li>
-        </ul>
+        <NavbarAdmin />
         {children}
       </body>
     </html>
