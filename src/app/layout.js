@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import "./globals.css";
 import "./index.scss";
@@ -7,8 +7,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Inter } from "next/font/google";
 import { NavbarAuth } from "../components/Navbars";
 import { UserContextProvider } from "@/contexts/user-context";
-import { useUserContext } from "@/contexts/user-context";
-import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
