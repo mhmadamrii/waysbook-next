@@ -8,7 +8,7 @@ export default function Homepage() {
   const router = useRouter()
   const { isLogin, user } = useUserContext()
   if (!isLogin) {
-    router.push("/authentication")
+    // router.push("/authentication")
   }
   return (
     <>
