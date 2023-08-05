@@ -7,7 +7,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Link from "next/link";
 
-function ModalLogin() {
+function ModalRegister() {
   const router = useRouter();
   const pathname = usePathname()
   const [show, setShow] = useState(true);
@@ -22,9 +22,11 @@ function ModalLogin() {
       <div className="m-2">
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title>Register</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" />
             <Form.Label>Email</Form.Label>
             <Form.Control type="email" id="email" />
             <Form.Label htmlFor="inputPassword5">Password</Form.Label>
@@ -37,8 +39,8 @@ function ModalLogin() {
           </div>
           <div className="m-2">
             <span>
-              Don't have an account?
-              <Link href="/authentication/modal-register">Click here</Link>
+              Already have an account?
+              <Link href="/authentication/modal-login"> Click here</Link>
             </span>
           </div>
         </Modal>
@@ -47,4 +49,4 @@ function ModalLogin() {
   );
 }
 
-export default ModalLogin;
+export default ModalRegister;

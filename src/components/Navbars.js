@@ -8,7 +8,7 @@ import Logo from "@/public/assets/Logo.png";
 import Image from "next/image";
 import Link from "next/link";
 
-export const NavbarAdmin = () => {
+export const NavbarAuth = () => {
   const router = useRouter();
   const routerPathname = usePathname();
   const { user, setUser, isLogin, setIsLogin } = useUserContext();
@@ -49,3 +49,10 @@ export const NavbarAdmin = () => {
     </>
   );
 };
+
+
+export const NavbarUser = () => {
+  return (
+    <h1>Navbar user</h1>
+  )
+}

@@ -5,7 +5,7 @@ import "./index.scss";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Inter } from "next/font/google";
-import { NavbarAdmin } from "../components/Navbars";
+import { NavbarAuth } from "../components/Navbars";
 import { UserContextProvider } from "@/contexts/user-context";
 import { useUserContext } from "@/contexts/user-context";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <UserContextProvider>
       <html lang="en">
         <body className={inter.className}>
-          <NavbarAdmin />
+          <NavbarAuth />
           {children}
         </body>
       </html>
