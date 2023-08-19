@@ -11,10 +11,10 @@ export default function DesktopNavbar() {
       </div>
 
       <div>
-        <Buttonable variant="outlined" isBtnLogin width={200} height={50}>
+        <Buttonable variant="outlined" isBtnLogin width={180} height={35}>
           Login
         </Buttonable>
-        <Buttonable variant="contained" isBtnRegister width={200} height={50}>
+        <Buttonable variant="contained" isBtnRegister width={180} height={35}>
           Register
         </Buttonable>
       </div>

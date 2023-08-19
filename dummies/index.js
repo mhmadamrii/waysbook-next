@@ -1,6 +1,6 @@
 /* assets */
-import Book1 from "@/assets/book1.png";
-import Book2 from "@/assets/book2.png";
+import Book1 from "@/public/assets/book1.png";
+import Book2 from "@/public/assets/book2.png";
 
 export const dummiesThumbnailBooks = [
   {

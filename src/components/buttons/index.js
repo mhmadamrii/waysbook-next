@@ -20,7 +20,6 @@ const Buttonable = (props) => {
 
 const Typographies = (props) => {
   const { children, color, size, isBold } = props;
-  console.log(props);
   const textStyle = {
     color: color || "black",
     fontSize: size ? size : "inherit",

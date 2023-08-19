@@ -4,8 +4,7 @@
 }
 
 .page-layout-desktop {
-  border: 1px solid red;
-  height: 500px;
+  height: 600px;
 }
 
 .navbar-desktop {
@@ -32,4 +31,35 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.page-layout-desktop-bottom {
+  background-color: #eaeaea;
+  height: 50vh;
+  border: 1px solid transparent;
+}
+
+.books-card-wrapper {
+  margin-top: -110px;
+  /* border: 1px solid blue; */
+  height: 300px;
+}
+
+.books-card-wrapper > :nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cards-thumbnail {
+  display: flex;
+}
+
+.cards-thumbnail > :nth-child(2) {
+}
+
+.mobile-navbar {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
 }
