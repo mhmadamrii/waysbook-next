@@ -1,6 +1,6 @@
-/* * {
-  background-color: #E5E5E5;
-} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .btn-groups {
   display: flex;
