@@ -4,9 +4,10 @@ import { useEffect } from "react";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 import Aos from "aos";
-import 'aos/dist/aos.css'
+import "aos/dist/aos.css";
 import DesktopNavbar from "../components/navbars/DesktopNavbar";
 import LayoutDesktop from "../components/layouts/LayoutDesktop";
+import LayoutMobile from "../components/layouts/LayoutMobile";
 import BooksCard from "../components/cards/BooksCarrd";
 import MobileNavbar from "../components/navbars/MobileNavbar";
 
@@ -29,7 +30,9 @@ const MobileScreen = () => {
   return (
     <>
       <MobileNavbar />
-      <h1>Mobile Screen</h1>
+      <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
+        <LayoutMobile />
+      </div>
     </>
   );
 };
@@ -37,8 +40,8 @@ const MobileScreen = () => {
 export default function RootExplorer() {
   const windowSize = useWindowSize();
   useEffect(() => {
-    Aos.init()
-  }, [])
+    Aos.init();
+  }, []);
   return <>{windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}</>;
 }
 

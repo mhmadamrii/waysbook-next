@@ -3,6 +3,13 @@
   margin: 0;
 }
 
+.global-flex-center-column {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .page-layout-desktop {
   height: 600px;
 }
