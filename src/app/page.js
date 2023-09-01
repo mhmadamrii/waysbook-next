@@ -43,7 +43,6 @@ export default function RootExplorer({ searchParams }) {
   const windowSize = useWindowSize();
   const openModalLogin = searchParams?.modal_login;
   const openModalRegister = searchParams?.modal_register;
-  console.log(openModalLogin);
 
   useEffect(() => {
     Aos.init();

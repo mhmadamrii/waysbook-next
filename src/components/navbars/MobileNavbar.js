@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import Logo from "@/public/assets/Logo.png";
-import MailIcon from "@mui/icons-material/Mail";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import WindowIcon from "@mui/icons-material/Window";
@@ -20,8 +18,10 @@ import {
 } from "@mui/material";
 import { Squash as Humberger } from "hamburger-react";
 import { useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 export default function MobileNavbar() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const handleCloseDrawer = useCallback(() => {
     setIsOpen(false);
@@ -39,6 +39,10 @@ export default function MobileNavbar() {
       icon: <HomeIcon />,
     },
   ];
+
+  const handleOpenModal = (info) => {
+    router.push(`?modal_${info}=true`);
+  };
   return (
     <>
       <div className="mobile-navbar">
@@ -65,7 +69,7 @@ export default function MobileNavbar() {
           </List>
           <Divider />
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => handleOpenModal("register")}>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
@@ -73,7 +77,7 @@ export default function MobileNavbar() {
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={() => handleOpenModal("login")}>
               <ListItemIcon>
                 <LoginIcon />
               </ListItemIcon>
