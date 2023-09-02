@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import * as React from "react";
+import * as Yup from "yup";
+
+import { useState, useEffect, useCallback } from "react";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 import Aos from "aos";
-import "aos/dist/aos.css";
 import DesktopNavbar from "../components/navbars/DesktopNavbar";
 import LayoutDesktop from "../components/layouts/LayoutDesktop";
 import LayoutMobile from "../components/layouts/LayoutMobile";
@@ -12,6 +14,7 @@ import BooksCard from "../components/cards/BooksCarrd";
 import MobileNavbar from "../components/navbars/MobileNavbar";
 import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
+import "aos/dist/aos.css";
 
 const DesktopScreen = () => {
   return (
@@ -44,15 +47,58 @@ export default function RootExplorer({ searchParams }) {
   const openModalLogin = searchParams?.modal_login;
   const openModalRegister = searchParams?.modal_register;
 
+  const [formLogin, setFormLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [formRegister, setFormRegister] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChangeLogin = useCallback(
+    (e) => {
+      const name = e.target.name;
+      setFormLogin((prevState) => ({
+        ...prevState,
+        [name]: e.target.value,
+      }));
+    },
+    [formLogin?.email, formLogin?.password]
+  );
+
+  const handleChangeRegister = useCallback(
+    (e) => {
+      const name = e.target.name;
+      setFormRegister((prevState) => ({
+        ...prevState,
+        [name]: e.target.value,
+      }));
+    },
+    [formRegister?.email, formRegister?.password]
+  );
+
+  const handleSubmitLogin = useCallback(() => {
+    Yup.ValidationError();
+  }, []);
+
+  const handleSubmitRegister = useCallback(() => {}, []);
+
+  console.log(formRegister);
   useEffect(() => {
     Aos.init();
   }, []);
   return (
     <>
       {openModalLogin === "true" ? (
-        <LoginModal />
+        <LoginModal
+          handleChange={handleChangeLogin}
+          handleSubmit={handleSubmitLogin}
+        />
       ) : openModalRegister === "true" ? (
-        <RegisterModal />
+        <RegisterModal handleChange={handleChangeRegister} />
       ) : null}
       {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
     </>
