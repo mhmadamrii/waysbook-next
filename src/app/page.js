@@ -2,8 +2,10 @@
 
 import * as React from "react";
 import * as Yup from "yup";
+import axios from "axios";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 import Aos from "aos";
@@ -44,6 +46,7 @@ const MobileScreen = () => {
 
 export default function RootExplorer({ searchParams }) {
   const windowSize = useWindowSize();
+  const router = useRouter();
   const openModalLogin = searchParams?.modal_login;
   const openModalRegister = searchParams?.modal_register;
 
@@ -80,13 +83,25 @@ export default function RootExplorer({ searchParams }) {
     [formRegister?.email, formRegister?.password]
   );
 
-  const handleSubmitLogin = useCallback(() => {
-    Yup.ValidationError();
-  }, []);
+  const handleSubmitLogin = useCallback(async () => {
+    const payload = {
+      email: formLogin?.email,
+      password: formLogin?.password,
+    };
+
+    try {
+      const { data } = await axios.post("/api/auth/login", payload);
+      console.log("data", data);
+      router.push("/dashboard");
+    } catch (error) {
+      console.log({ error });
+    }
+
+    console.log("payload", payload);
+  }, [formLogin]);
 
   const handleSubmitRegister = useCallback(() => {}, []);
 
-  console.log(formRegister);
   useEffect(() => {
     Aos.init();
   }, []);
