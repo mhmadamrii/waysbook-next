@@ -90,9 +90,11 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const { data } = await axios.post("/api/auth/login", payload);
-      console.log("data", data);
-      router.push("/dashboard");
+      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
+      const response = await axios.post(baseURL, payload);
+      if (response.status === 200) {
+        router.push("/dashboard");
+      }
     } catch (error) {
       console.log({ error });
     }
@@ -100,7 +102,21 @@ export default function RootExplorer({ searchParams }) {
     console.log("payload", payload);
   }, [formLogin]);
 
-  const handleSubmitRegister = useCallback(() => {}, []);
+  const handleSubmitRegister = useCallback(async () => {
+    const payload = {
+      username: formRegister?.username,
+      email: formRegister?.email,
+      password: formRegister?.password,
+    };
+
+    try {
+      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
+      const response = await axios.post(baseURL, payload);
+      console.log("response", response);
+    } catch (error) {
+      console.log({ error });
+    }
+  }, [formRegister]);
 
   useEffect(() => {
     Aos.init();
@@ -108,12 +124,9 @@ export default function RootExplorer({ searchParams }) {
   return (
     <>
       {openModalLogin === "true" ? (
-        <LoginModal
-          handleChange={handleChangeLogin}
-          handleSubmit={handleSubmitLogin}
-        />
+        <LoginModal handleChange={handleChangeLogin} handleSubmit={handleSubmitLogin} />
       ) : openModalRegister === "true" ? (
-        <RegisterModal handleChange={handleChangeRegister} />
+        <RegisterModal handleChange={handleChangeRegister} handleSubmit={handleSubmitRegister} />
       ) : null}
       {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
     </>

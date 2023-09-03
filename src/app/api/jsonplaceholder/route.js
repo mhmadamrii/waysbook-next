@@ -1,12 +1,9 @@
-import { NextResponse } from "next/server";
+"use server"
 
 export async function GET() {
-  const res = await fetch(
-    "https://jsonplaceholder.typicode.com/posts?_limit=10"
-  );
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10");
   const data = await res.json();
-  console.log("data api", data);
-  return new NextResponse({ data });
+  return new Response(JSON.stringify(data), {
+    status: 200,
+  });
 }
-
-export async function POST() {}
