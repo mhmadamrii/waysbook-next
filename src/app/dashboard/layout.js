@@ -16,17 +16,22 @@ export default function DashboardLayout({ children }) {
   };
 
   useEffect(() => {
-    (async () => {
-      const { user, error } = await getUser();
-      if (user) {
-        setIsSuccess(true);
-      }
-      console.log(user);
-      if (error) {
-        router.push("/");
-        return;
-      }
-    })();
+    // sementara
+    setTimeout(() => {
+      setIsSuccess(true);
+    }, 1000);
+
+    // (async () => {
+    //   const { user, error } = await getUser();
+    //   if (user) {
+    //     setIsSuccess(true);
+    //   }
+    //   console.log(user);
+    //   if (error) {
+    //     router.push("/");
+    //     return;
+    //   }
+    // })();
   }, []);
 
   if (!isSuccess) {

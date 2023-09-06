@@ -17,6 +17,7 @@ import MobileNavbar from "../components/navbars/MobileNavbar";
 import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
 import "aos/dist/aos.css";
+import CustomizedSnackbars from "../components/snackbars";
 
 const DesktopScreen = () => {
   return (
@@ -49,6 +50,8 @@ export default function RootExplorer({ searchParams }) {
   const router = useRouter();
   const openModalLogin = searchParams?.modal_login;
   const openModalRegister = searchParams?.modal_register;
+
+  const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -90,9 +93,11 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
+      const baseURL =
+        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
       const response = await axios.post(baseURL, payload);
       if (response.status === 200) {
+        setIsOpenSnackbar(true);
         router.push("/dashboard");
       }
     } catch (error) {
@@ -110,7 +115,8 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
+      const baseURL =
+        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
       const response = await axios.post(baseURL, payload);
       console.log("response", response);
     } catch (error) {
@@ -123,10 +129,17 @@ export default function RootExplorer({ searchParams }) {
   }, []);
   return (
     <>
+      <CustomizedSnackbars isOpenSnackbar={isOpenSnackbar} />
       {openModalLogin === "true" ? (
-        <LoginModal handleChange={handleChangeLogin} handleSubmit={handleSubmitLogin} />
+        <LoginModal
+          handleChange={handleChangeLogin}
+          handleSubmit={handleSubmitLogin}
+        />
       ) : openModalRegister === "true" ? (
-        <RegisterModal handleChange={handleChangeRegister} handleSubmit={handleSubmitRegister} />
+        <RegisterModal
+          handleChange={handleChangeRegister}
+          handleSubmit={handleSubmitRegister}
+        />
       ) : null}
       {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
     </>
