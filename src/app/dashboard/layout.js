@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(true);
 
   const handleLogOut = async () => {
     console.log("removing");
@@ -17,10 +17,9 @@ export default function DashboardLayout({ children }) {
 
   useEffect(() => {
     // sementara
-    setTimeout(() => {
-      setIsSuccess(true);
-    }, 1000);
-
+    // setTimeout(() => {
+    //   setIsSuccess(true);
+    // }, 1000);
     // (async () => {
     //   const { user, error } = await getUser();
     //   if (user) {
@@ -32,6 +31,13 @@ export default function DashboardLayout({ children }) {
     //     return;
     //   }
     // })();
+
+    /* asynchronous baru tanpa redirect */
+    (async () => {
+      const { user, error } = await getUser();
+      console.log(user);
+      console.log(error);
+    })();
   }, []);
 
   if (!isSuccess) {

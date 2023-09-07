@@ -3,6 +3,7 @@
 import * as React from "react";
 import * as Yup from "yup";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
@@ -98,7 +99,9 @@ export default function RootExplorer({ searchParams }) {
       const baseURL =
         "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
       const response = await axios.post(baseURL, payload);
+      console.log("response login", response);
       if (response.status === 200) {
+        Cookies.set("UserToken", response?.data?.token, { expires: 7 });
         setIsLoading(false);
         setIsOpenSnackbar(true);
         router.push("/dashboard");

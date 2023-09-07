@@ -4,7 +4,8 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const cookiesStore = cookies();
-  const token = cookiesStore.get("OurSiteJWT");
+  const token = cookiesStore.get("UserToken");
+  console.log("token kena get", token);
   if (!token) {
     return NextResponse.json(
       {
@@ -20,7 +21,9 @@ export async function GET() {
   const secret = process.env.JWT_SECRET || "";
 
   try {
-    verify(value, secret);
+    // sebelum diubah ngecompare dengan secret
+    verify(value, "secretOne");
+    console.log("value dari get token", value);
     const response = {
       message: "authenticated",
     };
