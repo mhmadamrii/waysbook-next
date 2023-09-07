@@ -10,6 +10,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import makeStyles from "@mui/styles/makeStyles";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useRouter } from "next/navigation";
 import InputField from "../input-groups/InputField";
@@ -34,7 +35,7 @@ export default function LoginModal(props) {
   const classes = useStyles();
   const router = useRouter();
 
-  const { handleChange, handleSubmit } = props;
+  const { handleChange, handleSubmit, isLoading } = props;
 
   const handleClose = () => {
     router.back();
@@ -66,8 +67,9 @@ export default function LoginModal(props) {
             fullWidth
             onClick={handleSubmit}
             className={classes._buttonLogin}
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? <CircularProgress size={25} /> : "Login"}
           </Button>
         </DialogActions>
         <DialogTitle>

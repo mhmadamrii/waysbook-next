@@ -52,6 +52,7 @@ export default function RootExplorer({ searchParams }) {
   const openModalRegister = searchParams?.modal_register;
 
   const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -87,6 +88,7 @@ export default function RootExplorer({ searchParams }) {
   );
 
   const handleSubmitLogin = useCallback(async () => {
+    setIsLoading(true);
     const payload = {
       email: formLogin?.email,
       password: formLogin?.password,
@@ -97,14 +99,13 @@ export default function RootExplorer({ searchParams }) {
         "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
       const response = await axios.post(baseURL, payload);
       if (response.status === 200) {
+        setIsLoading(false);
         setIsOpenSnackbar(true);
         router.push("/dashboard");
       }
     } catch (error) {
       console.log({ error });
     }
-
-    console.log("payload", payload);
   }, [formLogin]);
 
   const handleSubmitRegister = useCallback(async () => {
@@ -134,11 +135,13 @@ export default function RootExplorer({ searchParams }) {
         <LoginModal
           handleChange={handleChangeLogin}
           handleSubmit={handleSubmitLogin}
+          isLoading={isLoading}
         />
       ) : openModalRegister === "true" ? (
         <RegisterModal
           handleChange={handleChangeRegister}
           handleSubmit={handleSubmitRegister}
+          isLoading={isLoading}
         />
       ) : null}
       {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
