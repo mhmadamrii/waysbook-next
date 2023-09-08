@@ -5,6 +5,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import AuthenticatedNavbar from "@/src/components/navbars/AuthenticatedNavbar";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -35,6 +36,8 @@ export default function DashboardLayout({ children }) {
     /* asynchronous baru tanpa redirect */
     (async () => {
       const { user, error } = await getUser();
+      console.log(user);
+      console.log(error);
       if (error) {
         router.push("/");
       }
@@ -52,8 +55,7 @@ export default function DashboardLayout({ children }) {
   }
   return (
     <main>
-      <h1>Children dashboard</h1>
-      <button onClick={handleLogOut}>Log out!</button>
+      <AuthenticatedNavbar />
       {children}
     </main>
   );
@@ -62,6 +64,7 @@ export default function DashboardLayout({ children }) {
 async function getUser() {
   try {
     const { data } = await axios.get("/api/me");
+    console.log(data);
 
     return {
       user: data,

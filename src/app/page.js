@@ -6,7 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 import Aos from "aos";
@@ -22,10 +22,12 @@ import CustomizedSnackbars from "../components/snackbars";
 import ListBooks from "../components/list-books/ListBooks";
 
 export const DesktopScreen = () => {
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <>
       <div data-aos="fade-down" className="page-layout-desktop">
-        <DesktopNavbar />
+        {pathname === "/dashboard" ? null : <DesktopNavbar />}
         <LayoutDesktop />
       </div>
 
@@ -117,6 +119,7 @@ export default function RootExplorer({ searchParams }) {
   }, [formLogin]);
 
   const handleSubmitRegister = useCallback(async () => {
+    setIsLoading(true);
     const payload = {
       username: formRegister?.username,
       email: formRegister?.email,
@@ -128,7 +131,12 @@ export default function RootExplorer({ searchParams }) {
         "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
       const response = await axios.post(baseURL, payload);
       console.log("response", response);
+      if (response?.status === 200) {
+        setIsLoading(false);
+        setIsOpenSnackbar(true);
+      }
     } catch (error) {
+      setIsLoading(false);
       console.log({ error });
     }
   }, [formRegister]);

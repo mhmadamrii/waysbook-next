@@ -6,13 +6,15 @@ export default function ListBooks(props) {
     <div className="layout-desktop-bottom">
       <div className="lists-books-thumbnail">
         {dummiesThumbnailLists?.map((book) => (
-          <BooksTile
-            title={book?.title}
-            desc={book?.desc}
-            img={book?.imgPath}
-            author={book?.author}
-            price={book?.price}
-          />
+          <div key={book?.id}>
+            <BooksTile
+              title={book?.title}
+              desc={book?.desc}
+              img={book?.imgPath}
+              author={book?.author}
+              price={book?.price}
+            />
+          </div>
         ))}
       </div>
     </div>

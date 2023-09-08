@@ -15,9 +15,9 @@ export default function BooksCard() {
     <div className="books-card-wrapper">
       <div>
         {dummiesThumbnailBooks?.map((card) => (
-          <div className="cards-thumbnail">
+          <div className="cards-thumbnail" key={card?.id}>
             <div>
-              <Image src={card.imgPath} width={200} />
+              <Image src={card.imgPath} width={200} alt="book cards" />
             </div>
 
             <div>
