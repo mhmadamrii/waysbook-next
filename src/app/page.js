@@ -19,8 +19,9 @@ import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
 import "aos/dist/aos.css";
 import CustomizedSnackbars from "../components/snackbars";
+import ListBooks from "../components/list-books/ListBooks";
 
-const DesktopScreen = () => {
+export const DesktopScreen = () => {
   return (
     <>
       <div data-aos="fade-down" className="page-layout-desktop">
@@ -31,11 +32,15 @@ const DesktopScreen = () => {
       <div data-aos="fade-up" className="page-layout-desktop-bottom">
         <BooksCard />
       </div>
+
+      <div>
+        <ListBooks />
+      </div>
     </>
   );
 };
 
-const MobileScreen = () => {
+export const MobileScreen = () => {
   return (
     <>
       <MobileNavbar />

@@ -35,6 +35,9 @@ export default function DashboardLayout({ children }) {
     /* asynchronous baru tanpa redirect */
     (async () => {
       const { user, error } = await getUser();
+      if (error) {
+        router.push("/");
+      }
       console.log(user);
       console.log(error);
     })();
