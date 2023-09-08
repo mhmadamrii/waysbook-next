@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Cart from "@/public/assets/cart.svg";
-import Logo from "@/public/assets/logo.png";
+import Logo from "@/public/assets/Logo.png";
 import DefaultAvatar from "@/public/assets/avatar.png";
 import { IconButton } from "@mui/material";
 import { useRouter } from "next/navigation";
