@@ -1,4 +1,4 @@
-import { DesktopScreen } from "../page";
+import DesktopScreen from "@/src/components/ui/DesktopScreen";
 
 export default function Dashboard() {
   return <DesktopScreen />;

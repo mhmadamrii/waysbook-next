@@ -55,7 +55,6 @@ export default function DashboardLayout({ children }) {
   }
   return (
     <main>
-      <AuthenticatedNavbar />
       {children}
     </main>
   );

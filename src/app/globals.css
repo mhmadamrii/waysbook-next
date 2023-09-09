@@ -75,7 +75,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: 200px;
-  background-color: #FFFF;
+  background-color: #ffff;
   border-radius: 5px;
   padding: 10px;
   box-sizing: border-box;
@@ -91,6 +91,10 @@
 .lists-books-thumbnail {
   display: flex;
   gap: 10px;
+  width: 90vw;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }
 
 .books-with-title {

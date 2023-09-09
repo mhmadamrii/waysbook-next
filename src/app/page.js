@@ -1,46 +1,22 @@
 "use client";
 
 import * as React from "react";
-import * as Yup from "yup";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 import { useState, useEffect, useCallback } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useWindowSize } from "@uidotdev/usehooks";
 
+import "aos/dist/aos.css";
 import Aos from "aos";
-import DesktopNavbar from "../components/navbars/DesktopNavbar";
-import LayoutDesktop from "../components/layouts/LayoutDesktop";
 import LayoutMobile from "../components/layouts/LayoutMobile";
-import BooksCard from "../components/cards/BooksCarrd";
 import MobileNavbar from "../components/navbars/MobileNavbar";
 import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
-import "aos/dist/aos.css";
 import CustomizedSnackbars from "../components/snackbars";
-import ListBooks from "../components/list-books/ListBooks";
-
-export const DesktopScreen = () => {
-  const pathname = usePathname();
-  console.log(pathname);
-  return (
-    <>
-      <div data-aos="fade-down" className="page-layout-desktop">
-        {pathname === "/dashboard" ? null : <DesktopNavbar />}
-        <LayoutDesktop />
-      </div>
-
-      <div data-aos="fade-up" className="page-layout-desktop-bottom">
-        <BooksCard />
-      </div>
-
-      <div>
-        <ListBooks />
-      </div>
-    </>
-  );
-};
+import DesktopScreen from "../components/ui/DesktopScreen";
+import Alert from "@mui/material/Alert";
 
 export const MobileScreen = () => {
   return (
@@ -59,8 +35,15 @@ export default function RootExplorer({ searchParams }) {
   const openModalLogin = searchParams?.modal_login;
   const openModalRegister = searchParams?.modal_register;
 
-  const [isOpenSnackbar, setIsOpenSnackbar] = useState(false);
+  const [isOpenSnackbar, setIsOpenSnackbar] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [snackbarState, setSnackbarState] = useState({
+    isOpenSnackbar: false,
+    isError: false,
+    isSuccess: false,
+    messageSnackbar: "",
+  });
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -103,18 +86,39 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL =
-        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
+      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
       const response = await axios.post(baseURL, payload);
       console.log("response login", response);
       if (response.status === 200) {
         Cookies.set("UserToken", response?.data?.token, { expires: 7 });
         setIsLoading(false);
-        setIsOpenSnackbar(true);
-        router.push("/dashboard");
+        setSnackbarState((prevState) => ({
+          ...prevState,
+          isOpenSnackbar: true,
+          isSuccess: true,
+          isError: false,
+          messageSnackbar: "Successfully logged in!",
+        }));
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 1500);
       }
     } catch (error) {
+      setIsLoading(false);
       console.log({ error });
+      setSnackbarState((prevState) => ({
+        isOpenSnackbar: true,
+        isSuccess: false,
+        isError: true,
+        messageSnackbar: error?.response?.data?.message,
+      }));
+
+      setTimeout(() => {
+        setSnackbarState((prevState) => ({
+          ...prevState,
+          isOpenSnackbar: false,
+        }));
+      }, 2000);
     }
   }, [formLogin]);
 
@@ -127,8 +131,7 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL =
-        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
+      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
       const response = await axios.post(baseURL, payload);
       console.log("response", response);
       if (response?.status === 200) {
@@ -144,21 +147,14 @@ export default function RootExplorer({ searchParams }) {
   useEffect(() => {
     Aos.init();
   }, []);
+
   return (
     <>
-      <CustomizedSnackbars isOpenSnackbar={isOpenSnackbar} />
+      <CustomizedSnackbars isOpenSnackbar={snackbarState?.isOpenSnackbar} variant={snackbarState.isSuccess ? "success" : "error"} message={snackbarState?.messageSnackbar} />
       {openModalLogin === "true" ? (
-        <LoginModal
-          handleChange={handleChangeLogin}
-          handleSubmit={handleSubmitLogin}
-          isLoading={isLoading}
-        />
+        <LoginModal handleChange={handleChangeLogin} handleSubmit={handleSubmitLogin} isLoading={isLoading} />
       ) : openModalRegister === "true" ? (
-        <RegisterModal
-          handleChange={handleChangeRegister}
-          handleSubmit={handleSubmitRegister}
-          isLoading={isLoading}
-        />
+        <RegisterModal handleChange={handleChangeRegister} handleSubmit={handleSubmitRegister} isLoading={isLoading} />
       ) : null}
       {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
     </>

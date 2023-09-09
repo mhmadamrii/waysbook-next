@@ -43,32 +43,16 @@ export default function LoginModal(props) {
 
   return (
     <>
-      <Dialog
-        open
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
+      <Dialog open TransitionComponent={Transition} keepMounted onClose={handleClose} aria-describedby="alert-dialog-slide-description">
         <DialogTitle>Login</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            <InputField name="email" type="email" handleChange={handleChange} />
-            <InputField
-              name="password"
-              type="password"
-              handleChange={handleChange}
-            />
+            <InputField name="email" type="email" handleChange={handleChange} placeholder="Email" />
+            <InputField name="password" type="password" handleChange={handleChange} placeholder="Password" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={handleSubmit}
-            className={classes._buttonLogin}
-            disabled={isLoading}
-          >
+          <Button variant="contained" fullWidth onClick={handleSubmit} className={classes._buttonLogin} disabled={isLoading}>
             {isLoading ? <CircularProgress size={25} /> : "Login"}
           </Button>
         </DialogActions>

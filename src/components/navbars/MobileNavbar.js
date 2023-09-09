@@ -69,19 +69,19 @@ export default function MobileNavbar() {
           </List>
           <Divider />
           <ListItem disablePadding>
-            <ListItemButton onClick={() => handleOpenModal("register")}>
+            <ListItemButton onClick={() => handleOpenModal("login")}>
               <ListItemIcon>
                 <LogoutIcon />
               </ListItemIcon>
-              <ListItemText primary="Logout" />
+              <ListItemText primary="Login" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={() => handleOpenModal("login")}>
+            <ListItemButton onClick={() => handleOpenModal("register")}>
               <ListItemIcon>
                 <LoginIcon />
               </ListItemIcon>
-              <ListItemText primary="Login" />
+              <ListItemText primary="Register" />
             </ListItemButton>
           </ListItem>
         </Box>

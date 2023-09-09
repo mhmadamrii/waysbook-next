@@ -9,7 +9,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function CustomizedSnackbars(props) {
-  const { isOpenSnackbar } = props;
+  const { isOpenSnackbar, variant, message } = props;
+  console.log("props snackbar", props)
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -23,9 +24,10 @@ export default function CustomizedSnackbars(props) {
         open={isOpenSnackbar}
         autoHideDuration={6000}
         onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Successfully logged in!
+        <Alert onClose={handleClose} severity={variant} sx={{ width: "100%" }}>
+          {message}
         </Alert>
       </Snackbar>
     </Stack>
