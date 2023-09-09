@@ -11,7 +11,7 @@ import { makeStyles } from "@mui/styles";
 
 import PersonIcon from "@/public/assets/menu-navbar/person.svg";
 import MessageIcon from "@/public/assets/menu-navbar/message.svg";
-import LogoutIcon from "@/public/assets/menu-navbar/Logout-button.svg";
+import LogoutIcon from "@/public/assets/menu-navbar/logout-button.svg";
 
 const useStyles = makeStyles({
   menuItems: {
