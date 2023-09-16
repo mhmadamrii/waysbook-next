@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Image from "next/image";
 import Cart from "@/public/assets/cart.svg";
 import Logo from "@/public/assets/Logo.png";
 import DefaultAvatar from "@/public/assets/avatar.png";
 import Cookies from "js-cookie";
 
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { IconButton, Menu, MenuItem, Badge } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { makeStyles } from "@mui/styles";
+import { CartContext } from "@/contexts/cart-context";
 
 import PersonIcon from "@/public/assets/menu-navbar/person.svg";
 import MessageIcon from "@/public/assets/menu-navbar/message.svg";
@@ -20,6 +21,9 @@ const useStyles = makeStyles({
 });
 
 export default function AuthenticatedNavbar() {
+  const { cart } = useContext(CartContext);
+  console.log("the cart is ", cart);
+
   const classes = useStyles();
   const router = useRouter();
   const [state, setState] = useState({
@@ -56,7 +60,9 @@ export default function AuthenticatedNavbar() {
 
         <div>
           <IconButton>
-            <Image src={Cart} width={30} height={30} alt="cart" />
+            <Badge badgeContent={cart?.length} color="error">
+              <Image src={Cart} width={30} height={30} alt="cart" />
+            </Badge>
           </IconButton>
           <IconButton onClick={handleOpenMenu}>
             <Image src={DefaultAvatar} width={50} height={50} alt="cart" />

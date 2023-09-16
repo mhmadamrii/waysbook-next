@@ -9,8 +9,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BooksCard() {
+export default function BooksCard({ onAddToCart }) {
   const classes = useStyles();
+
+  console.log("dummies books", dummiesThumbnailBooks);
   return (
     <div className="books-card-wrapper">
       <div>
@@ -23,7 +25,12 @@ export default function BooksCard() {
             <div>
               <h1>{card.title}</h1>
               <span>{card.desc}</span>
-              <Button variant="contained" className={classes.btn} fullWidth>
+              <Button
+                variant="contained"
+                className={classes.btn}
+                fullWidth
+                onClick={() => onAddToCart(card)}
+              >
                 Add to Cart
               </Button>
             </div>

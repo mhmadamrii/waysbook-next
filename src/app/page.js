@@ -86,7 +86,8 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
+      const baseURL =
+        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
       const response = await axios.post(baseURL, payload);
       console.log("response login", response);
       if (response.status === 200) {
@@ -131,7 +132,8 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
+      const baseURL =
+        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
       const response = await axios.post(baseURL, payload);
       console.log("response", response);
       if (response?.status === 200) {
@@ -150,11 +152,23 @@ export default function RootExplorer({ searchParams }) {
 
   return (
     <>
-      <CustomizedSnackbars isOpenSnackbar={snackbarState?.isOpenSnackbar} variant={snackbarState.isSuccess ? "success" : "error"} message={snackbarState?.messageSnackbar} />
+      <CustomizedSnackbars
+        isOpenSnackbar={snackbarState?.isOpenSnackbar}
+        variant={snackbarState.isSuccess ? "success" : "error"}
+        message={snackbarState?.messageSnackbar}
+      />
       {openModalLogin === "true" ? (
-        <LoginModal handleChange={handleChangeLogin} handleSubmit={handleSubmitLogin} isLoading={isLoading} />
+        <LoginModal
+          handleChange={handleChangeLogin}
+          handleSubmit={handleSubmitLogin}
+          isLoading={isLoading}
+        />
       ) : openModalRegister === "true" ? (
-        <RegisterModal handleChange={handleChangeRegister} handleSubmit={handleSubmitRegister} isLoading={isLoading} />
+        <RegisterModal
+          handleChange={handleChangeRegister}
+          handleSubmit={handleSubmitRegister}
+          isLoading={isLoading}
+        />
       ) : null}
       {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
     </>
