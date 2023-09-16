@@ -10,24 +10,11 @@ import { useWindowSize } from "@uidotdev/usehooks";
 
 import "aos/dist/aos.css";
 import Aos from "aos";
-import LayoutMobile from "../components/layouts/LayoutMobile";
-import MobileNavbar from "../components/navbars/MobileNavbar";
 import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
 import CustomizedSnackbars from "../components/snackbars";
 import DesktopScreen from "../components/ui/DesktopScreen";
-import Alert from "@mui/material/Alert";
-
-export const MobileScreen = () => {
-  return (
-    <>
-      <MobileNavbar />
-      <div data-aos="fade-up" data-aos-anchor-placement="bottom-bottom">
-        <LayoutMobile />
-      </div>
-    </>
-  );
-};
+import MobileScreen from "../components/ui/MobileScreen";
 
 export default function RootExplorer({ searchParams }) {
   const windowSize = useWindowSize();

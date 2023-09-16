@@ -10,7 +10,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export default function CustomizedSnackbars(props) {
   const { isOpenSnackbar, variant, message } = props;
-  console.log("props snackbar", props)
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {

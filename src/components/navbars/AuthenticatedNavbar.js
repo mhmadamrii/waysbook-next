@@ -59,7 +59,7 @@ export default function AuthenticatedNavbar() {
         </div>
 
         <div>
-          <IconButton>
+          <IconButton onClick={() => router.push("/cart")}>
             <Badge badgeContent={cart?.length} color="error">
               <Image src={Cart} width={30} height={30} alt="cart" />
             </Badge>
