@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-import { dummiesThumbnailBooks } from "@/dummies";
-import { useSnackbar } from "notistack";
+import {Button} from "@mui/material";
+import {makeStyles} from "@mui/styles";
+import {dummiesThumbnailBooks} from "@/dummies";
+import {useSnackbar} from "notistack";
 
 const useStyles = makeStyles({
   btn: {
@@ -12,17 +12,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BooksCard({ onAddToCart }) {
+export default function BooksCard({onAddToCart}) {
   const classes = useStyles();
   const isLogin = false;
-  const { enqueueSnackbar } = useSnackbar();
+  const {enqueueSnackbar} = useSnackbar();
 
-  const handleSnack = () => {
-    enqueueSnackbar("Please login first!", {
-      variant: "error",
+  const handleAddToCart = (card) => {
+    onAddToCart(card);
+    enqueueSnackbar("Item added to cart!", {
+      variant: "success",
       anchorOrigin: {
         vertical: "top",
-        horizontal: "right",
+        horizontal: "left",
       },
     });
   };
@@ -31,20 +32,14 @@ export default function BooksCard({ onAddToCart }) {
       <div>
         {dummiesThumbnailBooks?.map((card, idx) => (
           <div className="cards-thumbnail" key={idx}>
-            <div>
+            <div onClick={() => onAddToCart(card)}>
               <Image src={card.imgPath} width={200} alt="book cards" />
             </div>
 
             <div>
               <h1>{card.title}</h1>
               <span>{card.desc}</span>
-              <Button
-                variant="contained"
-                className={classes.btn}
-                fullWidth
-                // onClick={() => (isLogin ? onAddToCart(card) : handleSnack())}
-                onClick={handleSnack}
-              >
+              <Button variant="contained" className={classes.btn} fullWidth onClick={handleAddToCart}>
                 Add to Cart
               </Button>
             </div>

@@ -7,13 +7,12 @@ import Cookies from "js-cookie";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useWindowSize } from "@uidotdev/usehooks";
-import { SnackbarProvider, useSnackbar } from "notistack";
+import { useSnackbar } from "notistack";
 
 import "aos/dist/aos.css";
 import Aos from "aos";
 import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
-import CustomizedSnackbars from "../components/snackbars";
 import DesktopScreen from "../components/ui/DesktopScreen";
 import MobileScreen from "../components/ui/MobileScreen";
 
@@ -23,16 +22,8 @@ export default function RootExplorer({ searchParams }) {
   const openModalLogin = searchParams?.modal_login;
   const openModalRegister = searchParams?.modal_register;
 
-  const [isOpenSnackbar, setIsOpenSnackbar] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
-
-  const [snackbarState, setSnackbarState] = useState({
-    isOpenSnackbar: false,
-    isError: false,
-    isSuccess: false,
-    messageSnackbar: "",
-  });
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -69,7 +60,6 @@ export default function RootExplorer({ searchParams }) {
 
   const handleSubmitLogin = useCallback(async () => {
     setIsLoading(true);
-    enqueueSnackbar("Login success", { variant: "success" });
     const payload = {
       email: formLogin?.email,
       password: formLogin?.password,
@@ -82,34 +72,18 @@ export default function RootExplorer({ searchParams }) {
       console.log("response login", response);
       if (response.status === 200) {
         Cookies.set("UserToken", response?.data?.token, { expires: 7 });
-        setIsLoading(false);
         console.log(response.status);
-        setSnackbarState((prevState) => ({
-          ...prevState,
-          isOpenSnackbar: true,
-          isSuccess: true,
-          isError: false,
-          messageSnackbar: "Successfully logged in!",
-        }));
+        enqueueSnackbar("Login success", { variant: "success" });
         setTimeout(() => {
+          setIsLoading(false);
           router.push("/dashboard");
         }, 1500);
       }
     } catch (error) {
       setIsLoading(false);
       console.log({ error });
-      setSnackbarState((prevState) => ({
-        isOpenSnackbar: true,
-        isSuccess: false,
-        isError: true,
-        messageSnackbar: error?.response?.data?.message,
-      }));
 
       setTimeout(() => {
-        setSnackbarState((prevState) => ({
-          ...prevState,
-          isOpenSnackbar: false,
-        }));
       }, 2000);
     }
   }, [formLogin]);
@@ -128,38 +102,12 @@ export default function RootExplorer({ searchParams }) {
       const response = await axios.post(baseURL, payload);
       console.log("response", response);
       if (response?.status === 200) {
-        setSnackbarState((prevState) => ({
-          ...prevState,
-          isOpenSnackbar: true,
-          isSuccess: true,
-          isError: false,
-          messageSnackbar: "Successfully register!",
-        }));
         setIsLoading(false);
         setIsOpenSnackbar(true);
 
-        setTimeout(() => {
-          setSnackbarState((prevState) => ({
-            ...prevState,
-            isOpenSnackbar: false,
-          }));
-        }, 2000);
       }
     } catch (error) {
       setIsLoading(false);
-      setSnackbarState((prevState) => ({
-        isOpenSnackbar: true,
-        isSuccess: false,
-        isError: true,
-        messageSnackbar: error?.response?.data?.message,
-      }));
-
-      setTimeout(() => {
-        setSnackbarState((prevState) => ({
-          ...prevState,
-          isOpenSnackbar: false,
-        }));
-      }, 2000);
       console.log({ error });
     }
   }, [formRegister]);
@@ -170,27 +118,20 @@ export default function RootExplorer({ searchParams }) {
 
   return (
     <>
-      <SnackbarProvider maxSnack={10}>
-        <CustomizedSnackbars
-          isOpenSnackbar={snackbarState?.isOpenSnackbar}
-          variant={snackbarState.isSuccess ? "success" : "error"}
-          message={snackbarState?.messageSnackbar}
+      {openModalLogin === "true" ? (
+        <LoginModal
+          handleChange={handleChangeLogin}
+          handleSubmit={handleSubmitLogin}
+          isLoading={isLoading}
         />
-        {openModalLogin === "true" ? (
-          <LoginModal
-            handleChange={handleChangeLogin}
-            handleSubmit={handleSubmitLogin}
-            isLoading={isLoading}
-          />
-        ) : openModalRegister === "true" ? (
-          <RegisterModal
-            handleChange={handleChangeRegister}
-            handleSubmit={handleSubmitRegister}
-            isLoading={isLoading}
-          />
-        ) : null}
-        {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
-      </SnackbarProvider>
+      ) : openModalRegister === "true" ? (
+        <RegisterModal
+          handleChange={handleChangeRegister}
+          handleSubmit={handleSubmitRegister}
+          isLoading={isLoading}
+        />
+      ) : null}
+      {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
     </>
   );
 }
