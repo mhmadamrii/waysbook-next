@@ -49,7 +49,7 @@
 
 .page-layout-desktop-bottom {
   background-color: #eaeaea;
-  height: 50vh;
+  height: 40vh;
   border: 1px solid transparent;
 }
 
@@ -60,19 +60,26 @@
 
 .books-card-wrapper {
   margin-top: -110px;
-  /* border: 1px solid blue; */
-  height: 300px;
+  min-height: 300px;
+  border: 1px solid transparent;
 }
 
 .books-card-wrapper > :nth-child(1) {
   display: flex;
   justify-content: space-between;
+  overflow-y: scroll;
+  width: 100vw;
+}
+
+.static-width-300 {
+  width: 300px;
 }
 
 .cards-thumbnail {
   display: flex;
   align-items: center;
   width: 425px;
+  border: 1px solid #eaeaea;
 }
 
 .cards-thumbnail > :nth-child(2) {
@@ -103,7 +110,6 @@
   display: flex;
   gap: 10px;
   width: 90vw;
-  align-items: center;
   justify-content: center;
   margin: auto;
 }

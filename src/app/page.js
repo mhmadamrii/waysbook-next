@@ -108,7 +108,13 @@ export default function RootExplorer({ searchParams }) {
       console.log("response", response);
       if (response?.status === 200) {
         setIsLoading(false);
-        setIsOpenSnackbar(true);
+        enqueueSnackbar("Register success", {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "right",
+          },
+        });
       }
     } catch (error) {
       setIsLoading(false);

@@ -37,7 +37,7 @@ export default function BooksCard({onAddToCart}) {
               <Image src={card.imgPath} width={200} alt="book cards" />
             </div>
 
-            <div>
+            <div className="static-width-300">
               <h1>{card.title}</h1>
               <span>{card.desc}</span>
               <Button variant="contained" className={classes.btn} fullWidth onClick={handleAddToCart}>
