@@ -13,11 +13,10 @@ import "aos/dist/aos.css";
 import Aos from "aos";
 import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
-import DesktopScreen from "../components/ui/DesktopScreen";
-import MobileScreen from "../components/ui/MobileScreen";
+import UnAuthenticatedScreen from "../components/UnAuthenticatedScreen";
+import MobileScreen from "../components/MobileScreen";
 
 export default function RootExplorer({ searchParams }) {
-  const windowSize = useWindowSize();
   const router = useRouter();
   const openModalLogin = searchParams?.modal_login;
   const openModalRegister = searchParams?.modal_register;
@@ -66,25 +65,32 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL =
-        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
+      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
       const response = await axios.post(baseURL, payload);
-      console.log("response login", response);
       if (response.status === 200) {
         Cookies.set("UserToken", response?.data?.token, { expires: 7 });
         console.log(response.status);
-        enqueueSnackbar("Login success", { variant: "success" });
+        enqueueSnackbar("Login success", {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "right",
+          },
+        });
         setTimeout(() => {
+          enqueueSnackbar(`Welcome ${response?.data?.user?.username}`, {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right",
+            },
+          });
           setIsLoading(false);
           router.push("/dashboard");
         }, 1500);
       }
     } catch (error) {
-      setIsLoading(false);
       console.log({ error });
-
-      setTimeout(() => {
-      }, 2000);
     }
   }, [formLogin]);
 
@@ -97,14 +103,12 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL =
-        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
+      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
       const response = await axios.post(baseURL, payload);
       console.log("response", response);
       if (response?.status === 200) {
         setIsLoading(false);
         setIsOpenSnackbar(true);
-
       }
     } catch (error) {
       setIsLoading(false);
@@ -116,22 +120,14 @@ export default function RootExplorer({ searchParams }) {
     Aos.init();
   }, []);
 
+  useEffect(() => {
+    return () => setIsLoading(false)
+  }, [])
+
   return (
     <>
-      {openModalLogin === "true" ? (
-        <LoginModal
-          handleChange={handleChangeLogin}
-          handleSubmit={handleSubmitLogin}
-          isLoading={isLoading}
-        />
-      ) : openModalRegister === "true" ? (
-        <RegisterModal
-          handleChange={handleChangeRegister}
-          handleSubmit={handleSubmitRegister}
-          isLoading={isLoading}
-        />
-      ) : null}
-      {windowSize.width < 700 ? <MobileScreen /> : <DesktopScreen />}
+      {openModalLogin === "true" ? <LoginModal handleChange={handleChangeLogin} handleSubmit={handleSubmitLogin} isLoading={isLoading} /> : openModalRegister === "true" ? <RegisterModal handleChange={handleChangeRegister} handleSubmit={handleSubmitRegister} isLoading={isLoading} /> : null}
+      <UnAuthenticatedScreen />
     </>
   );
 }

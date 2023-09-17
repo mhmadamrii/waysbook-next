@@ -24,7 +24,7 @@ export default function ListBooks(props) {
 const BooksTile = (props) => {
   const { title, desc, img, author, price } = props;
   return (
-    <div className="books-with-title" data-aos="flip-down">
+    <div className="books-with-title">
       <div>
         <Image src={img} width={170} height={250} alt="books" />
       </div>

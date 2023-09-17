@@ -1,4 +1,4 @@
-import CartScreen from "@/src/components/ui/CartScreen";
+import CartScreen from "@/src/components/CartScreen";
 
 export default function Cart() {
   return (

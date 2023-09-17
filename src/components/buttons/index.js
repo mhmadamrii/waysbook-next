@@ -18,14 +18,4 @@ const Buttonable = (props) => {
   );
 };
 
-const Typographies = (props) => {
-  const { children, color, size, isBold } = props;
-  const textStyle = {
-    color: color || "black",
-    fontSize: size ? size : "inherit",
-    fontWeight: isBold ? "bold" : "inherit",
-  };
-  return <Typography style={textStyle}>{children}</Typography>;
-};
-
-export { Buttonable, Typographies };
+export { Buttonable };

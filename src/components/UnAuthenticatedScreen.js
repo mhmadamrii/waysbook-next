@@ -2,16 +2,16 @@
 
 import React, { useEffect, useContext, useCallback } from "react";
 import Aos from "aos";
-import LayoutDesktop from "../layouts/LayoutDesktop";
-import BooksCard from "../cards/BooksCarrd";
-import ListBooks from "../list-books/ListBooks";
-import DesktopNavbar from "../navbars/DesktopNavbar";
-import AuthenticatedNavbar from "../navbars/AuthenticatedNavbar";
+import LayoutDesktop from "./layouts/LayoutDesktop";
+import BooksCard from "./cards/BooksCarrd";
+import ListBooks from "./list-books/ListBooks";
+import UnAuthenticatedNavbar from "./navbars/UnAuthenticatedNavbar";
+import AuthenticatedNavbar from "./navbars/AuthenticatedNavbar";
 
 import { usePathname } from "next/navigation";
 import { CartContext } from "@/contexts/cart-context";
 
-const DesktopScreen = (props) => {
+const UnAuthenticatedScreen = (props) => {
   const { cart, addToCart } = useContext(CartContext);
 
   const pathname = usePathname();
@@ -33,12 +33,12 @@ const DesktopScreen = (props) => {
   }, []);
   return (
     <>
-      <div data-aos="fade-down" className="page-layout-desktop">
-        {pathname === "/" ? <DesktopNavbar /> : <AuthenticatedNavbar />}
+      <div className="page-layout-desktop">
+        {pathname === "/" ? <UnAuthenticatedNavbar /> : <AuthenticatedNavbar />}
         <LayoutDesktop />
       </div>
 
-      <div data-aos="fade-up" className="page-layout-desktop-bottom">
+      <div className="page-layout-desktop-bottom">
         <BooksCard onAddToCart={handleAddToCart} {...props} />
       </div>
 
@@ -49,4 +49,4 @@ const DesktopScreen = (props) => {
   );
 };
 
-export default DesktopScreen;
+export default UnAuthenticatedScreen;

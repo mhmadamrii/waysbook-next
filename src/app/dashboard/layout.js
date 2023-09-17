@@ -12,7 +12,6 @@ export default function DashboardLayout({ children }) {
   const [isSuccess, setIsSuccess] = useState(true);
 
   const handleLogOut = async () => {
-    console.log("removing");
     const { data } = await axios.post("/api/auth/logout", {});
   };
 
@@ -36,13 +35,9 @@ export default function DashboardLayout({ children }) {
     /* asynchronous baru tanpa redirect */
     (async () => {
       const { user, error } = await getUser();
-      console.log(user);
-      console.log(error);
       if (error) {
         router.push("/");
       }
-      console.log(user);
-      console.log(error);
     })();
   }, []);
 
@@ -63,7 +58,6 @@ export default function DashboardLayout({ children }) {
 async function getUser() {
   try {
     const { data } = await axios.get("/api/me");
-    console.log(data);
 
     return {
       user: data,

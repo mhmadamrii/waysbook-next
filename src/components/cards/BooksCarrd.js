@@ -21,9 +21,10 @@ export default function BooksCard({onAddToCart}) {
     onAddToCart(card);
     enqueueSnackbar("Item added to cart!", {
       variant: "success",
+      autoHideDuration: 1000,
       anchorOrigin: {
         vertical: "top",
-        horizontal: "left",
+        horizontal: "right",
       },
     });
   };

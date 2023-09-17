@@ -13,6 +13,7 @@ import { CartContext } from "@/contexts/cart-context";
 import PersonIcon from "@/public/assets/menu-navbar/person.svg";
 import MessageIcon from "@/public/assets/menu-navbar/message.svg";
 import LogoutIcon from "@/public/assets/menu-navbar/logout-button.svg";
+import MobileNavbar from "./MobileNavbar";
 
 const useStyles = makeStyles({
   menuItems: {
@@ -22,7 +23,6 @@ const useStyles = makeStyles({
 
 export default function AuthenticatedNavbar() {
   const { cart } = useContext(CartContext);
-  console.log("the cart is ", cart);
 
   const classes = useStyles();
   const router = useRouter();
@@ -92,6 +92,9 @@ export default function AuthenticatedNavbar() {
           Logout
         </MenuItem>
       </Menu>
+      <div className="navbar-authenticated-mobile">
+        <MobileNavbar />
+      </div>
     </>
   );
 }

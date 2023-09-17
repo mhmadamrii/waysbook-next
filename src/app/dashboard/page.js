@@ -1,5 +1,5 @@
-import DesktopScreen from "@/src/components/ui/DesktopScreen";
+import UnAuthenticatedScreen from "@/src/components/UnAuthenticatedScreen";
 
 export default function Dashboard() {
-  return <DesktopScreen />;
+  return <UnAuthenticatedScreen />;
 }

@@ -4,7 +4,7 @@ import Logo from "@/public/assets/Logo.png";
 import { useRouter } from "next/navigation";
 import { Buttonable } from "../buttons";
 
-export default function DesktopNavbar() {
+export default function UnAuthenticatedNavbar() {
   const router = useRouter();
   const handleOpenLogin = () => {
     router.push("?modal_login=true");
@@ -17,7 +17,7 @@ export default function DesktopNavbar() {
   return (
     <div className="navbar-desktop">
       <div>
-        <Image src={Logo} width={130} height={80} />
+        <Image src={Logo} width={130} height={80} alt="logo" />
       </div>
 
       <div>

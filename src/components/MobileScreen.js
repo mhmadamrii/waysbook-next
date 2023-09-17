@@ -1,7 +1,7 @@
 "use client";
 
-import MobileNavbar from "../navbars/MobileNavbar";
-import LayoutMobile from "../layouts/LayoutMobile";
+import MobileNavbar from "./navbars/MobileNavbar";
+import LayoutMobile from "./layouts/LayoutMobile";
 
 const MobileScreen = () => {
   return (

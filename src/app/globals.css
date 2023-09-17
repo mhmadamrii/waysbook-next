@@ -13,6 +13,7 @@
 
 .page-layout-desktop {
   height: 600px;
+  width: 100%;
 }
 
 .navbar-desktop {
@@ -34,11 +35,16 @@
 }
 
 .layout-desktop-thumbnails {
+  width: 100%;
   margin-top: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.layout-desktop-thumbnails > h1 {
+  font-size: 50px;
 }
 
 .page-layout-desktop-bottom {
@@ -88,7 +94,9 @@
   justify-content: space-between;
   position: fixed;
   width: 100%;
-  background-color: #FFFF;
+  background-color: #ffff;
+  top: 0;
+  z-index: 1;
 }
 
 .lists-books-thumbnail {
@@ -117,4 +125,27 @@
 
 .layout-mobile {
   margin-top: 80px;
+}
+
+.navbar-authenticated-mobile {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .navbar-desktop {
+    display: none;
+  }
+
+  .navbar-authenticated-mobile {
+    display: block;
+  }
+
+  .layout-desktop-thumbnails {
+    width: 100%;
+  }
+
+  .layout-desktop-thumbnails > h1 {
+    font-size: 25px;
+    text-align: center;
+  }
 }

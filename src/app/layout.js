@@ -1,8 +1,6 @@
 "use client";
 
 import "./globals.css";
-import "./index.scss";
-
 import {Inter} from "next/font/google";
 import {AuthProvider} from "../context/auth-context";
 import {CartProvider} from "@/contexts/cart-context";
