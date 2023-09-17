@@ -11,7 +11,7 @@ import AuthenticatedNavbar from "../navbars/AuthenticatedNavbar";
 import { usePathname } from "next/navigation";
 import { CartContext } from "@/contexts/cart-context";
 
-const DesktopScreen = () => {
+const DesktopScreen = (props) => {
   const { cart, addToCart } = useContext(CartContext);
 
   const pathname = usePathname();
@@ -39,7 +39,7 @@ const DesktopScreen = () => {
       </div>
 
       <div data-aos="fade-up" className="page-layout-desktop-bottom">
-        <BooksCard onAddToCart={handleAddToCart} />
+        <BooksCard onAddToCart={handleAddToCart} {...props} />
       </div>
 
       <div>

@@ -21,9 +21,11 @@ export default function CustomizedSnackbars(props) {
     <Stack spacing={2} sx={{ width: "100%" }}>
       <Snackbar
         open={isOpenSnackbar}
-        autoHideDuration={6000}
+        autoHideDuration={2000}
         onClose={handleClose}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        transitionDuration={{ enter: 1000, exit: 500 }} // Added transition duration for sliding effect
+        sx={{ transform: "translateX(10%)" }} // Starting position of the Snackbar
       >
         <Alert onClose={handleClose} severity={variant} sx={{ width: "100%" }}>
           {message}

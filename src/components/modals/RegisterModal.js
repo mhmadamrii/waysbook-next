@@ -56,12 +56,19 @@ export default function RegisterModal(props) {
               name="username"
               type="email"
               handleChange={handleChange}
+              placeholder="username"
             />
-            <InputField name="email" type="email" handleChange={handleChange} />
+            <InputField
+              name="email"
+              type="email"
+              handleChange={handleChange}
+              placeholder="email"
+            />
             <InputField
               name="password"
               type="password"
               handleChange={handleChange}
+              placeholder="password"
             />
           </DialogContentText>
         </DialogContent>

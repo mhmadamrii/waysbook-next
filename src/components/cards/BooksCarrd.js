@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { dummiesThumbnailBooks } from "@/dummies";
+import { useSnackbar } from "notistack";
 
 const useStyles = makeStyles({
   btn: {
@@ -11,13 +14,23 @@ const useStyles = makeStyles({
 
 export default function BooksCard({ onAddToCart }) {
   const classes = useStyles();
+  const isLogin = false;
+  const { enqueueSnackbar } = useSnackbar();
 
-  console.log("dummies books", dummiesThumbnailBooks);
+  const handleSnack = () => {
+    enqueueSnackbar("Please login first!", {
+      variant: "error",
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right",
+      },
+    });
+  };
   return (
     <div className="books-card-wrapper">
       <div>
-        {dummiesThumbnailBooks?.map((card) => (
-          <div className="cards-thumbnail" key={card?.id}>
+        {dummiesThumbnailBooks?.map((card, idx) => (
+          <div className="cards-thumbnail" key={idx}>
             <div>
               <Image src={card.imgPath} width={200} alt="book cards" />
             </div>
@@ -29,7 +42,8 @@ export default function BooksCard({ onAddToCart }) {
                 variant="contained"
                 className={classes.btn}
                 fullWidth
-                onClick={() => onAddToCart(card)}
+                // onClick={() => (isLogin ? onAddToCart(card) : handleSnack())}
+                onClick={handleSnack}
               >
                 Add to Cart
               </Button>

@@ -1,19 +1,18 @@
+"use client";
+
 import "./globals.css";
 import "./index.scss";
 
 import { Inter } from "next/font/google";
 import { AuthProvider } from "../context/auth-context";
-import { CartContext, CartProvider } from "@/contexts/cart-context";
+import { CartProvider } from "@/contexts/cart-context";
+import { SnackbarProvider } from "notistack";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "WaysBook | Book store app ",
-  description: "Best Store book ever",
-};
-
 export default function RootLayout({ children }) {
   return (
+    // <SnackbarProvider maxSnack={4}>
     <AuthProvider>
       <CartProvider>
         <html lang="en">
@@ -21,5 +20,6 @@ export default function RootLayout({ children }) {
         </html>
       </CartProvider>
     </AuthProvider>
+    // </SnackbarProvider>
   );
 }
