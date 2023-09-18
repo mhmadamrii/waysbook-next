@@ -10,6 +10,7 @@ import AuthenticatedNavbar from "./navbars/AuthenticatedNavbar";
 
 import { usePathname } from "next/navigation";
 import { CartContext } from "@/contexts/cart-context";
+import MobileNavbar from "./navbars/MobileNavbar";
 
 const UnAuthenticatedScreen = (props) => {
   const { cart, addToCart } = useContext(CartContext);
@@ -33,6 +34,10 @@ const UnAuthenticatedScreen = (props) => {
   }, []);
   return (
     <>
+      <div className="display-mobile-navbar">
+        <MobileNavbar />
+      </div>
+
       <div className="page-layout-desktop">
         {pathname === "/" ? <UnAuthenticatedNavbar /> : <AuthenticatedNavbar />}
         <LayoutDesktop />

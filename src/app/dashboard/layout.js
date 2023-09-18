@@ -6,35 +6,19 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import AuthenticatedNavbar from "@/src/components/navbars/AuthenticatedNavbar";
+import MobileNavbar from "@/src/components/navbars/MobileNavbar";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(true);
-
-  const handleLogOut = async () => {
-    const { data } = await axios.post("/api/auth/logout", {});
-  };
-
+  const [userAuthenticated, setUserAuthenticated] = useState()
+  
   useEffect(() => {
-    // sementara
-    // setTimeout(() => {
-    //   setIsSuccess(true);
-    // }, 1000);
-    // (async () => {
-    //   const { user, error } = await getUser();
-    //   if (user) {
-    //     setIsSuccess(true);
-    //   }
-    //   console.log(user);
-    //   if (error) {
-    //     router.push("/");
-    //     return;
-    //   }
-    // })();
-
     /* asynchronous baru tanpa redirect */
     (async () => {
       const { user, error } = await getUser();
+      console.log('usesres', user)
+      setUserAuthenticated(user)
       if (error) {
         router.push("/");
       }
@@ -50,6 +34,9 @@ export default function DashboardLayout({ children }) {
   }
   return (
     <main>
+      <div className="display-mobile-navbar">
+        <MobileNavbar userAuthenticated={userAuthenticated} />
+      </div>
       {children}
     </main>
   );

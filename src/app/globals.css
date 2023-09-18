@@ -111,6 +111,10 @@ html {
   z-index: 1;
 }
 
+.display-mobile-navbar {
+  display: none;
+}
+
 .lists-books-thumbnail {
   display: flex;
   gap: 10px;
@@ -149,6 +153,10 @@ html {
     display: none;
   }
 
+  .display-mobile-navbar {
+    display: block;
+  }
+
   .navbar-authenticated-mobile {
     display: block;
   }
@@ -163,7 +171,7 @@ html {
   }
 
   .page-layout-desktop {
-    height: 400px;
+    height: 255px;
     width: 100%;
   }
 }

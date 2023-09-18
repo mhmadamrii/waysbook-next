@@ -20,7 +20,7 @@ import { Squash as Humberger } from "hamburger-react";
 import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
-export default function MobileNavbar() {
+export default function MobileNavbar({ userAuthenticated }) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const handleCloseDrawer = useCallback(() => {
