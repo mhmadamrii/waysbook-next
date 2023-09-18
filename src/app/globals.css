@@ -4,6 +4,11 @@
   text-decoration: none;
 }
 
+html {
+  width: 100vw;
+  overflow-x: clip;
+}
+
 .global-flex-center-column {
   display: flex;
   text-align: center;
@@ -112,6 +117,7 @@
   width: 90vw;
   justify-content: center;
   margin: auto;
+  flex-wrap: wrap;
 }
 
 .books-with-title {
@@ -122,6 +128,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  max-width: 230px;
 }
 
 .author {
@@ -153,5 +160,16 @@
   .layout-desktop-thumbnails > h1 {
     font-size: 25px;
     text-align: center;
+  }
+
+  .page-layout-desktop {
+    height: 400px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .books-with-title {
+    max-width: 100%;
   }
 }
