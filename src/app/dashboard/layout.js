@@ -4,21 +4,18 @@ import axios from "axios";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import AuthenticatedNavbar from "@/src/components/navbars/AuthenticatedNavbar";
 import MobileNavbar from "@/src/components/navbars/MobileNavbar";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(true);
-  const [userAuthenticated, setUserAuthenticated] = useState()
-  
+  const [userAuthenticated, setUserAuthenticated] = useState();
+
   useEffect(() => {
     /* asynchronous baru tanpa redirect */
     (async () => {
       const { user, error } = await getUser();
-      console.log('usesres', user)
-      setUserAuthenticated(user)
+      setUserAuthenticated(user);
       if (error) {
         router.push("/");
       }

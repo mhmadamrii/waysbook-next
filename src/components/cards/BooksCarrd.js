@@ -17,8 +17,7 @@ const useStyles = makeStyles({
 export default function BooksCard({ onAddToCart }) {
   const classes = useStyles();
   const isLogin = false;
-  const { user } = React.useContext(AuthContext)
-  console.log('user', user)
+  const { user } = React.useContext(AuthContext);
   const { enqueueSnackbar } = useSnackbar();
 
   const handleAddToCart = (card) => {
@@ -55,7 +54,12 @@ export default function BooksCard({ onAddToCart }) {
             <div className="static-width-300">
               <h1>{card.title}</h1>
               <span>{card.desc}</span>
-              <Button variant="contained" className={classes.btn} fullWidth onClick={user?.name === "" ? handleLoginFirst : handleAddToCart}>
+              <Button
+                variant="contained"
+                className={classes.btn}
+                fullWidth
+                onClick={user?.name === "" ? handleLoginFirst : handleAddToCart}
+              >
                 Add to Cart
               </Button>
             </div>

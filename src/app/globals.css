@@ -148,6 +148,11 @@ html {
   display: none;
 }
 
+.right-navbar-section {
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 700px) {
   .navbar-desktop {
     display: none;

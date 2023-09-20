@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const cookiesStore = cookies();
   const token = cookiesStore.get("UserToken");
-  console.log("token kena get", token);
   if (!token) {
     return NextResponse.json(
       {

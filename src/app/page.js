@@ -23,8 +23,7 @@ export default function RootExplorer({ searchParams }) {
 
   const [isLoading, setIsLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
-  const { user, setUser } = useContext(AuthContext)
-  console.log('user', user)
+  const { user, setUser } = useContext(AuthContext);
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -67,12 +66,12 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
+      const baseURL =
+        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
       const response = await axios.post(baseURL, payload);
       if (response.status === 200) {
         Cookies.set("UserToken", response?.data?.token, { expires: 7 });
-        console.log('response', response)
-        setUser({ name: response?.data?.user?.username, role: 'user' })
+        setUser({ name: response?.data?.user?.username, role: "user" });
         enqueueSnackbar("Login success", {
           variant: "success",
           anchorOrigin: {
@@ -93,7 +92,15 @@ export default function RootExplorer({ searchParams }) {
         }, 1500);
       }
     } catch (error) {
+      setIsLoading(false);
       console.log({ error });
+      enqueueSnackbar(error?.response?.data?.message, {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right",
+        },
+      });
     }
   }, [formLogin]);
 
@@ -106,9 +113,9 @@ export default function RootExplorer({ searchParams }) {
     };
 
     try {
-      const baseURL = "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
+      const baseURL =
+        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
       const response = await axios.post(baseURL, payload);
-      console.log("response", response);
       if (response?.status === 200) {
         setIsLoading(false);
         enqueueSnackbar("Register success", {
@@ -122,6 +129,13 @@ export default function RootExplorer({ searchParams }) {
     } catch (error) {
       setIsLoading(false);
       console.log({ error });
+      enqueueSnackbar(error?.response?.data?.message, {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right",
+        },
+      });
     }
   }, [formRegister]);
 
@@ -130,12 +144,24 @@ export default function RootExplorer({ searchParams }) {
   }, []);
 
   useEffect(() => {
-    return () => setIsLoading(false)
-  }, [])
+    return () => setIsLoading(false);
+  }, []);
 
   return (
     <>
-      {openModalLogin === "true" ? <LoginModal handleChange={handleChangeLogin} handleSubmit={handleSubmitLogin} isLoading={isLoading} /> : openModalRegister === "true" ? <RegisterModal handleChange={handleChangeRegister} handleSubmit={handleSubmitRegister} isLoading={isLoading} /> : null}
+      {openModalLogin === "true" ? (
+        <LoginModal
+          handleChange={handleChangeLogin}
+          handleSubmit={handleSubmitLogin}
+          isLoading={isLoading}
+        />
+      ) : openModalRegister === "true" ? (
+        <RegisterModal
+          handleChange={handleChangeRegister}
+          handleSubmit={handleSubmitRegister}
+          isLoading={isLoading}
+        />
+      ) : null}
       <UnAuthenticatedScreen />
     </>
   );
