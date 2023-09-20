@@ -81,7 +81,7 @@ export default function MobileNavbar({ userAuthenticated }) {
               <ListItemIcon>
                 <LoginIcon />
               </ListItemIcon>
-              <ListItemText primary="Register" />
+              <ListItemText primary="Logout" />
             </ListItemButton>
           </ListItem>
         </Box>

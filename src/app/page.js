@@ -4,10 +4,10 @@ import * as React from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { useWindowSize } from "@uidotdev/usehooks";
 import { useSnackbar } from "notistack";
+import { AuthContext } from "@/contexts/user-context";
 
 import "aos/dist/aos.css";
 import Aos from "aos";
@@ -23,6 +23,8 @@ export default function RootExplorer({ searchParams }) {
 
   const [isLoading, setIsLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const { user, setUser } = useContext(AuthContext)
+  console.log('user', user)
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -69,7 +71,8 @@ export default function RootExplorer({ searchParams }) {
       const response = await axios.post(baseURL, payload);
       if (response.status === 200) {
         Cookies.set("UserToken", response?.data?.token, { expires: 7 });
-        console.log(response.status);
+        console.log('response', response)
+        setUser({ name: response?.data?.user?.username, role: 'user' })
         enqueueSnackbar("Login success", {
           variant: "success",
           anchorOrigin: {

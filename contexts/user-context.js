@@ -1,26 +1,18 @@
-"use client";
+"use client"
 
-import React, { createContext, useContext, useState } from "react";
+import * as React from "react";
 
-const UserContext = createContext({
-  user: {},
-  setUser: () => {},
-  isLogin: false,
-  setIsLogin: () => {}
-});
+export const AuthContext = React.createContext()
 
-export const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
-  const [isLogin, setIsLogin] = useState(false)
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = React.useState({
+    name: '',
+    role: ''
+  })
 
-  const contextValue = {
-    user,
-    setUser,
-    isLogin,
-    setIsLogin
-  };
-
-  return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
-};
-
-export const useUserContext = () => useContext(UserContext)
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  )
+}

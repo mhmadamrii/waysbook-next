@@ -1,14 +1,14 @@
 "use client";
 
 import "./globals.css";
-import {Inter} from "next/font/google";
-import {AuthProvider} from "../context/auth-context";
-import {CartProvider} from "@/contexts/cart-context";
-import {SnackbarProvider} from "notistack";
+import { Inter } from "next/font/google";
+import { CartProvider } from "@/contexts/cart-context";
+import { AuthProvider } from "@/contexts/user-context";
+import { SnackbarProvider } from "notistack";
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({children}) {
+export default function RootLayout({ children }) {
   return (
     <AuthProvider>
       <CartProvider>

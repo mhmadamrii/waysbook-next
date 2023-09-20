@@ -10,6 +10,7 @@ import AuthenticatedNavbar from "./navbars/AuthenticatedNavbar";
 
 import { usePathname } from "next/navigation";
 import { CartContext } from "@/contexts/cart-context";
+import { AuthContext } from "@/contexts/user-context";
 import MobileNavbar from "./navbars/MobileNavbar";
 
 const UnAuthenticatedScreen = (props) => {
