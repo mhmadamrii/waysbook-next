@@ -3,16 +3,18 @@
 import * as React from "react";
 import Cookies from "js-cookie";
 import Image from "next/image";
+import Link from "next/link";
 import Logo from "@/public/assets/Logo.png";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import WindowIcon from "@mui/icons-material/Window";
-import HomeIcon from "@mui/icons-material/Home";
 import Cart from "@/public/assets/cart.svg";
 import PersonIcon from "@/public/assets/menu-navbar/person.svg";
 import MessageIcon from "@/public/assets/menu-navbar/message.svg";
 import LogoutIconNav from "@/public/assets/menu-navbar/logout-button.svg";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
 import {
   Drawer,
   Divider,
@@ -57,13 +59,21 @@ export default function MobileNavbar({ userAuthenticated }) {
   const listsMenu = [
     {
       id: 1,
-      menu: "Window",
-      icon: <WindowIcon />,
+      menu: "My Instagram",
+      icon: <InstagramIcon />,
+      link: "https://www.instagram.com/mhmadamrii/",
     },
     {
       id: 1,
-      menu: "Home",
-      icon: <HomeIcon />,
+      menu: "My LinkedIn",
+      icon: <LinkedInIcon />,
+      link: "https://www.linkedin.com/in/muhammad-amri-51693a242/",
+    },
+    {
+      id: 3,
+      menu: "My Github",
+      icon: <GitHubIcon />,
+      link: "https://github.com/mhmadamrii",
     },
   ];
 
@@ -107,7 +117,11 @@ export default function MobileNavbar({ userAuthenticated }) {
   return (
     <>
       <div className="mobile-navbar">
-        <div data-aos="fade-right" data-aos-duration="1500" onClick={() => router.push('/dashboard')}>
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1500"
+          onClick={() => router.push("/dashboard")}
+        >
           <Image src={Logo} width={110} height={75} alt="logo image" />
         </div>
 
@@ -140,10 +154,12 @@ export default function MobileNavbar({ userAuthenticated }) {
           <List>
             {listsMenu.map((menu, index) => (
               <ListItem key={index} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>{menu?.icon}</ListItemIcon>
-                  <ListItemText primary={menu?.menu} />
-                </ListItemButton>
+                <Link href={menu?.link} target="_blank" className="links">
+                  <ListItemButton>
+                    <ListItemIcon>{menu?.icon}</ListItemIcon>
+                    <ListItemText primary={menu?.menu} />
+                  </ListItemButton>
+                </Link>
               </ListItem>
             ))}
           </List>

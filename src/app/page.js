@@ -86,7 +86,6 @@ export default function RootExplorer({ searchParams }) {
               horizontal: "right",
             },
           });
-          setIsLoading(false);
           router.push("/dashboard");
         }, 1500);
       }

@@ -39,7 +39,7 @@ export const dummiesThumbnailLists = [
   },
   {
     id: 2,
-    title: "Warm Heart",
+    title: "Tes CPNS 100% LULUS",
     desc: "Exercitation quis mollit fugiat incididunt eu adipisicing esse exercitation elit.",
     imgPath: Book7,
     author: "Emily",

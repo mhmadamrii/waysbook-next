@@ -23,6 +23,7 @@ const UnAuthenticatedScreen = (props) => {
       const newItem = {
         id: idBook,
         item: title,
+        img: imgPath,
       };
 
       addToCart(newItem);

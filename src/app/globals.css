@@ -160,6 +160,22 @@ html {
   align-items: center;
 }
 
+.links {
+  width: 100%;
+  color: inherit;
+}
+
+.items-list-product {
+  display: flex;
+  border: 1px solid red;
+  justify-content: space-between;
+}
+
+.cart-item-lists {
+  border: 1px solid blue;
+  width: 60vw;
+}
+
 @media (max-width: 700px) {
   .navbar-desktop {
     display: none;
@@ -185,6 +201,14 @@ html {
   .page-layout-desktop {
     height: 255px;
     width: 100%;
+  }
+
+  .cards-thumbnail {
+    margin-top: 20px;
+  }
+
+  .page-layout-desktop-bottom {
+    height: 35vh;
   }
 }
 

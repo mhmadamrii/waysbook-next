@@ -14,6 +14,8 @@ const useStyles = makeStyles({
   },
 });
 
+// modified
+
 export default function BooksCard({ onAddToCart }) {
   const classes = useStyles();
   const { user } = React.useContext(AuthContext);
@@ -46,7 +48,7 @@ export default function BooksCard({ onAddToCart }) {
       <div>
         {dummiesThumbnailBooks?.map((card, idx) => (
           <div className="cards-thumbnail" key={idx}>
-            <div onClick={() => onAddToCart(card)}>
+            <div>
               <Image src={card.imgPath} width={200} alt="book cards" />
             </div>
 
@@ -57,7 +59,11 @@ export default function BooksCard({ onAddToCart }) {
                 variant="contained"
                 className={classes.btn}
                 fullWidth
-                onClick={user?.name === "" ? handleLoginFirst : handleAddToCart}
+                onClick={
+                  user?.name === ""
+                    ? handleLoginFirst
+                    : () => handleAddToCart(card)
+                }
               >
                 Add to Cart
               </Button>

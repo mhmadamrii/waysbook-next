@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
 import * as React from "react";
 
-export const AuthContext = React.createContext()
+export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = React.useState({
-    name: '',
-    role: ''
-  })
+    name: "general",
+    role: "",
+  });
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
