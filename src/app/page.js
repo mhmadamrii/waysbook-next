@@ -14,7 +14,6 @@ import Aos from "aos";
 import LoginModal from "../components/modals/LoginModal";
 import RegisterModal from "../components/modals/RegisterModal";
 import UnAuthenticatedScreen from "../components/UnAuthenticatedScreen";
-import MobileScreen from "../components/MobileScreen";
 
 export default function RootExplorer({ searchParams }) {
   const router = useRouter();

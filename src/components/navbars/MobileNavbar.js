@@ -12,6 +12,7 @@ import Cart from "@/public/assets/cart.svg";
 import PersonIcon from "@/public/assets/menu-navbar/person.svg";
 import MessageIcon from "@/public/assets/menu-navbar/message.svg";
 import LogoutIconNav from "@/public/assets/menu-navbar/logout-button.svg";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 import {
   Drawer,
   Divider,
@@ -40,9 +41,9 @@ const useStyles = makeStyles({
 });
 
 export default function MobileNavbar({ userAuthenticated }) {
+  const router = useRouter();
   const classes = useStyles();
   const { cart } = React.useContext(CartContext);
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [userToken, setUserToken] = useState(null);
   const [state, setState] = useState({
@@ -102,6 +103,7 @@ export default function MobileNavbar({ userAuthenticated }) {
       return;
     }
   }, []); // This useEffect will run once on component mount
+  console.log(userToken);
 
   return (
     <>
@@ -115,7 +117,7 @@ export default function MobileNavbar({ userAuthenticated }) {
           data-aos-duration="1500"
           className="right-navbar-section"
         >
-          {userToken !== null ? (
+          {userToken ? (
             <>
               <IconButton onClick={() => router.push("/cart")}>
                 <Badge badgeContent={cart?.length} color="error">
@@ -126,7 +128,9 @@ export default function MobileNavbar({ userAuthenticated }) {
                 <Image src={DefaultAvatar} width={50} height={50} alt="cart" />
               </IconButton>
             </>
-          ) : null}
+          ) : (
+            <div />
+          )}
 
           <Humberger toggled={isOpen} toggle={setIsOpen} />
         </div>
@@ -145,22 +149,36 @@ export default function MobileNavbar({ userAuthenticated }) {
             ))}
           </List>
           <Divider />
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => handleOpenModal("login")}>
-              <ListItemIcon>
-                <LogoutIcon />
-              </ListItemIcon>
-              <ListItemText primary="Login" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => handleOpenModal("register")}>
-              <ListItemIcon>
-                <LoginIcon />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItemButton>
-          </ListItem>
+
+          {userToken ? (
+            <ListItem disablePadding>
+              <ListItemButton onClick={() => handleOpenModal("login")}>
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText primary="Logout" />
+              </ListItemButton>
+            </ListItem>
+          ) : (
+            <>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => handleOpenModal("login")}>
+                  <ListItemIcon>
+                    <LoginIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Login" />
+                </ListItemButton>
+              </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton onClick={() => handleOpenModal("register")}>
+                  <ListItemIcon>
+                    <HowToRegIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Register" />
+                </ListItemButton>
+              </ListItem>
+            </>
+          )}
         </Box>
       </Drawer>
       <Menu

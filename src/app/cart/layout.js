@@ -3,6 +3,7 @@
 import axios from "axios";
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { getUser } from "@/src/utils/check-auth";
 import AuthenticatedNavbar from "@/src/components/navbars/AuthenticatedNavbar";
 
 export default function CartLayout({ children }) {
@@ -35,21 +36,4 @@ export default function CartLayout({ children }) {
       {children}
     </main>
   );
-}
-
-async function getUser() {
-  try {
-    const { data } = await axios.get("/api/me");
-
-    return {
-      user: data,
-      error: null,
-    };
-  } catch (error) {
-    console.log({ error });
-    return {
-      user: null,
-      error,
-    };
-  }
 }
