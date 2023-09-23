@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getUser } from "@/src/utils/check-auth";
 import MobileNavbar from "@/src/components/navbars/MobileNavbar";
+import GeneralPreloader from "@/src/components/preloader.js";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function DashboardLayout({ children }) {
   useEffect(() => {
     (async () => {
       const { user, error } = await getUser();
+      console.log('the userrrrr', user)
       if (user) {
         setIsSuccess(true);
       }
@@ -24,12 +26,9 @@ export default function DashboardLayout({ children }) {
   }, []);
 
   if (!isSuccess) {
-    return (
-      <center>
-        <h1>Loading stream........</h1>
-      </center>
-    );
+    return <GeneralPreloader />
   }
+
   return (
     <main>
       <div className="display-mobile-navbar">

@@ -5,6 +5,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { getUser } from "@/src/utils/check-auth";
 import AuthenticatedNavbar from "@/src/components/navbars/AuthenticatedNavbar";
+import GeneralPreloader from "@/src/components/preloader.js";
 
 export default function CartLayout({ children }) {
   const router = useRouter();
@@ -24,12 +25,9 @@ export default function CartLayout({ children }) {
   }, []);
 
   if (!isSuccess) {
-    return (
-      <center>
-        <h1>Loading stream.....</h1>
-      </center>
-    );
+    return <GeneralPreloader />
   }
+  console.log('isSucccess', isSuccess)
   return (
     <main>
       <AuthenticatedNavbar />

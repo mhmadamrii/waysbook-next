@@ -153,6 +153,13 @@ html {
   align-items: center;
 }
 
+.preloader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 700px) {
   .navbar-desktop {
     display: none;

@@ -4,6 +4,8 @@ import React, { useState, useContext } from "react";
 import { CartContext } from "@/contexts/cart-context";
 
 export default function CartScreen() {
+  const { cart } = useContext(CartContext)
+  console.log('cart', cart)
   return (
     <>
       <h1>Hllo world</h1>

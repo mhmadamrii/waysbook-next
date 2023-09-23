@@ -103,12 +103,11 @@ export default function MobileNavbar({ userAuthenticated }) {
       return;
     }
   }, []); // This useEffect will run once on component mount
-  console.log(userToken);
 
   return (
     <>
       <div className="mobile-navbar">
-        <div data-aos="fade-right" data-aos-duration="1500">
+        <div data-aos="fade-right" data-aos-duration="1500" onClick={() => router.push('/dashboard')}>
           <Image src={Logo} width={110} height={75} alt="logo image" />
         </div>
 

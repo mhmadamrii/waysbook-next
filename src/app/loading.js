@@ -1,7 +1,5 @@
+import GeneralPreloader from "../components/preloader.js";
+
 export default function Loading() {
-  return (
-    <center>
-      <h1>Loading stream........</h1>
-    </center>
-  );
+  return <GeneralPreloader />
 }

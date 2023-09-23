@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 
 export default function BooksCard({ onAddToCart }) {
   const classes = useStyles();
-  const isLogin = false;
   const { user } = React.useContext(AuthContext);
   const { enqueueSnackbar } = useSnackbar();
 
