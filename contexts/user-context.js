@@ -6,7 +6,7 @@ export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = React.useState({
-    name: "general",
+    name: "",
     role: "",
   });
 

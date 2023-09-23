@@ -7,6 +7,7 @@ import { makeStyles } from "@mui/styles";
 import { dummiesThumbnailBooks } from "@/dummies";
 import { useSnackbar } from "notistack";
 import { AuthContext } from "@/contexts/user-context";
+import { getUser } from "@/src/utils/check-auth";
 
 const useStyles = makeStyles({
   btn: {
@@ -14,10 +15,9 @@ const useStyles = makeStyles({
   },
 });
 
-// modified
-
 export default function BooksCard({ onAddToCart }) {
   const classes = useStyles();
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const { user } = React.useContext(AuthContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -43,6 +43,19 @@ export default function BooksCard({ onAddToCart }) {
       },
     });
   };
+
+  React.useEffect(() => {
+    (async () => {
+      const { user, error } = await getUser();
+      if (user) {
+        setIsAuthenticated(true);
+      }
+      if (error) {
+        setIsAuthenticated(false);
+        console.log("error", error);
+      }
+    })();
+  }, []);
   return (
     <div className="books-card-wrapper">
       <div>
@@ -60,9 +73,9 @@ export default function BooksCard({ onAddToCart }) {
                 className={classes.btn}
                 fullWidth
                 onClick={
-                  user?.name === ""
-                    ? handleLoginFirst
-                    : () => handleAddToCart(card)
+                  isAuthenticated
+                    ? () => handleAddToCart(card)
+                    : () => handleLoginFirst()
                 }
               >
                 Add to Cart

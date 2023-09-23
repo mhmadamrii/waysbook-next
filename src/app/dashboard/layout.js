@@ -15,7 +15,6 @@ export default function DashboardLayout({ children }) {
   useEffect(() => {
     (async () => {
       const { user, error } = await getUser();
-      console.log('the userrrrr', user)
       if (user) {
         setIsSuccess(true);
       }
@@ -26,7 +25,7 @@ export default function DashboardLayout({ children }) {
   }, []);
 
   if (!isSuccess) {
-    return <GeneralPreloader />
+    return <GeneralPreloader />;
   }
 
   return (
