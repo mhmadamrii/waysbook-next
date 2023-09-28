@@ -160,6 +160,45 @@ html {
   align-items: center;
 }
 
+.sidebar-rgd {
+  border: 1px solid red;
+  width: 300px;
+  height: 100vh;
+  position: relative;
+}
+
+.navbar-rdg {
+  border: 1px solid red;
+  height: 90px;
+  background-color: #ffff;
+  display: flex;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.tableRDG {
+  border: 1px solid red;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 100px;
+  width: 80%;
+}
+
+.add-user-rdg {
+  /* border: 1px solid red; */
+  position: absolute;
+  display: column;
+  right: 0;
+  top: 0;
+  margin-top: 100px;
+  width: 80%;
+  /* height: ; */
+}
+
 @media (max-width: 700px) {
   .navbar-desktop {
     display: none;
