@@ -139,9 +139,6 @@ export default function RootExplorer({ searchParams }) {
 
   useEffect(() => {
     Aos.init();
-  }, []);
-
-  useEffect(() => {
     return () => setIsLoading(false);
   }, []);
 

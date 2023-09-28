@@ -19,6 +19,11 @@ const useStyles = makeStyles({
 export default function CartScreen() {
   const classes = useStyles();
   const { cart } = useContext(CartContext);
+  console.log("cart", cart);
+
+  const handleDeleteItem = (id) => {
+    console.log("id", id);
+  };
   return (
     <>
       <div>
@@ -41,7 +46,10 @@ export default function CartScreen() {
                   <div>
                     <h2>{item?.item}</h2>
                   </div>
-                  <IconButton className={classes.deleteBtn}>
+                  <IconButton
+                    className={classes.deleteBtn}
+                    onClick={() => handleDeleteItem(item?.id)}
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </div>
