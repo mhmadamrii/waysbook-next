@@ -167,13 +167,20 @@ html {
 
 .items-list-product {
   display: flex;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .cart-item-lists {
-  border: 1px solid blue;
+  border-top: 3px solid #333232;
+  border-bottom: 3px solid #333232;
+  padding: 20px 0;
   width: 60vw;
+}
+
+.items-cart {
+  display: flex;
 }
 
 @media (max-width: 700px) {
