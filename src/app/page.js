@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import * as React from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
-import { useState, useEffect, useCallback, useContext } from "react";
-import { useRouter } from "next/navigation";
-import { useSnackbar } from "notistack";
-import { AuthContext } from "@/contexts/user-context";
+import { useState, useEffect, useCallback, useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSnackbar } from 'notistack';
+import { AuthContext } from '@/contexts/user-context';
 
-import "aos/dist/aos.css";
-import Aos from "aos";
-import LoginModal from "../components/modals/LoginModal";
-import RegisterModal from "../components/modals/RegisterModal";
-import UnAuthenticatedScreen from "../components/UnAuthenticatedScreen";
+import 'aos/dist/aos.css';
+import Aos from 'aos';
+import LoginModal from '../components/modals/LoginModal';
+import RegisterModal from '../components/modals/RegisterModal';
+import UnAuthenticatedScreen from '../components/UnAuthenticatedScreen';
 
 export default function RootExplorer({ searchParams }) {
   const router = useRouter();
@@ -25,14 +25,14 @@ export default function RootExplorer({ searchParams }) {
   const { user, setUser } = useContext(AuthContext);
 
   const [formLogin, setFormLogin] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [formRegister, setFormRegister] = useState({
-    username: "",
-    email: "",
-    password: "",
+    username: '',
+    email: '',
+    password: '',
   });
 
   const handleChangeLogin = useCallback(
@@ -43,7 +43,7 @@ export default function RootExplorer({ searchParams }) {
         [name]: e.target.value,
       }));
     },
-    [formLogin?.email, formLogin?.password]
+    [formLogin?.email, formLogin?.password],
   );
 
   const handleChangeRegister = useCallback(
@@ -54,7 +54,7 @@ export default function RootExplorer({ searchParams }) {
         [name]: e.target.value,
       }));
     },
-    [formRegister?.email, formRegister?.password]
+    [formRegister?.email, formRegister?.password],
   );
 
   const handleSubmitLogin = useCallback(async () => {
@@ -66,37 +66,37 @@ export default function RootExplorer({ searchParams }) {
 
     try {
       const baseURL =
-        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in";
+        'https://express-creation-mhmadamrii.vercel.app/api/v1/sign-in';
       const response = await axios.post(baseURL, payload);
       if (response.status === 200) {
-        Cookies.set("UserToken", response?.data?.token, { expires: 7 });
-        setUser({ name: response?.data?.user?.username, role: "user" });
-        enqueueSnackbar("Login success", {
-          variant: "success",
+        Cookies.set('UserToken', response?.data?.token, { expires: 7 });
+        setUser({ name: response?.data?.user?.username, role: 'user' });
+        enqueueSnackbar('Login success', {
+          variant: 'success',
           anchorOrigin: {
-            vertical: "top",
-            horizontal: "right",
+            vertical: 'top',
+            horizontal: 'right',
           },
         });
         setTimeout(() => {
           enqueueSnackbar(`Welcome ${response?.data?.user?.username}`, {
-            variant: "success",
+            variant: 'success',
             anchorOrigin: {
-              vertical: "top",
-              horizontal: "right",
+              vertical: 'top',
+              horizontal: 'right',
             },
           });
-          router.push("/dashboard");
+          router.push('/dashboard');
         }, 1500);
       }
     } catch (error) {
       setIsLoading(false);
       console.log({ error });
       enqueueSnackbar(error?.response?.data?.message, {
-        variant: "error",
+        variant: 'error',
         anchorOrigin: {
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         },
       });
     }
@@ -112,15 +112,15 @@ export default function RootExplorer({ searchParams }) {
 
     try {
       const baseURL =
-        "https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up";
+        'https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up';
       const response = await axios.post(baseURL, payload);
       if (response?.status === 200) {
         setIsLoading(false);
-        enqueueSnackbar("Register success", {
-          variant: "success",
+        enqueueSnackbar('Register success', {
+          variant: 'success',
           anchorOrigin: {
-            vertical: "top",
-            horizontal: "right",
+            vertical: 'top',
+            horizontal: 'right',
           },
         });
       }
@@ -128,14 +128,34 @@ export default function RootExplorer({ searchParams }) {
       setIsLoading(false);
       console.log({ error });
       enqueueSnackbar(error?.response?.data?.message, {
-        variant: "error",
+        variant: 'error',
         anchorOrigin: {
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         },
       });
     }
   }, [formRegister]);
+
+  let modalContent = null;
+
+  if (openModalLogin === 'true') {
+    modalContent = (
+      <LoginModal
+        handleChange={handleChangeLogin}
+        handleSubmit={handleSubmitLogin}
+        isLoading={isLoading}
+      />
+    );
+  } else if (openModalRegister === 'true') {
+    modalContent = (
+      <RegisterModal
+        handleChange={handleChangeRegister}
+        handleSubmit={handleSubmitRegister}
+        isLoading={isLoading}
+      />
+    );
+  }
 
   useEffect(() => {
     Aos.init();
@@ -144,19 +164,7 @@ export default function RootExplorer({ searchParams }) {
 
   return (
     <>
-      {openModalLogin === "true" ? (
-        <LoginModal
-          handleChange={handleChangeLogin}
-          handleSubmit={handleSubmitLogin}
-          isLoading={isLoading}
-        />
-      ) : openModalRegister === "true" ? (
-        <RegisterModal
-          handleChange={handleChangeRegister}
-          handleSubmit={handleSubmitRegister}
-          isLoading={isLoading}
-        />
-      ) : null}
+      {modalContent}
       <UnAuthenticatedScreen />
     </>
   );

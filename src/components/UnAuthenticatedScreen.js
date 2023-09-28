@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React, { useEffect, useContext, useCallback } from "react";
-import Aos from "aos";
-import LayoutDesktop from "./layouts/LayoutDesktop";
-import BooksCard from "./cards/BooksCarrd";
-import ListBooks from "./list-books/ListBooks";
-import UnAuthenticatedNavbar from "./navbars/UnAuthenticatedNavbar";
-import AuthenticatedNavbar from "./navbars/AuthenticatedNavbar";
+import React, { useEffect, useContext, useCallback } from 'react';
+import Aos from 'aos';
+import LayoutDesktop from './layouts/LayoutDesktop';
+import BooksCard from './cards/BooksCarrd';
+import ListBooks from './list-books/ListBooks';
+import UnAuthenticatedNavbar from './navbars/UnAuthenticatedNavbar';
+import AuthenticatedNavbar from './navbars/AuthenticatedNavbar';
 
-import { usePathname } from "next/navigation";
-import { CartContext } from "@/contexts/cart-context";
-import { AuthContext } from "@/contexts/user-context";
-import MobileNavbar from "./navbars/MobileNavbar";
+import { usePathname } from 'next/navigation';
+import { CartContext } from '@/contexts/cart-context';
+import { AuthContext } from '@/contexts/user-context';
+import MobileNavbar from './navbars/MobileNavbar';
 
 const UnAuthenticatedScreen = (props) => {
   const { cart, addToCart } = useContext(CartContext);
@@ -28,7 +28,7 @@ const UnAuthenticatedScreen = (props) => {
 
       addToCart(newItem);
     },
-    [cart]
+    [cart],
   );
 
   useEffect(() => {
@@ -41,15 +41,15 @@ const UnAuthenticatedScreen = (props) => {
       </div>
 
       <div className="page-layout-desktop">
-        {pathname === "/" ? <UnAuthenticatedNavbar /> : <AuthenticatedNavbar />}
+        {pathname === '/' ? <UnAuthenticatedNavbar /> : <AuthenticatedNavbar />}
         <LayoutDesktop />
       </div>
 
-      <div className="page-layout-desktop-bottom">
+      <div className="page-layout-desktop-bottom animated animatedFadeInUp fadeInUp">
         <BooksCard onAddToCart={handleAddToCart} {...props} />
       </div>
 
-      <div>
+      <div className="animated animatedFadeInUp fadeInUp">
         <ListBooks />
       </div>
     </>
