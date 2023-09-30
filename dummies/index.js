@@ -13,18 +13,24 @@ export const dummiesThumbnailBooks = [
     title: "Sebuah Seni untuk bersikap Bodo Amat",
     desc: "Elit laboris minim adipisicing irure proident excepteur do ullamco dolor.",
     imgPath: Book1,
+    price: 2000,
+    author: "John Doe"
   },
   {
     id: 2,
     title: "Warm Heart",
     desc: "Exercitation quis mollit fugiat incididunt eu adipisicing esse exercitation elit.",
     imgPath: Book2,
+    price: 4000,
+    author: "Daniel"
   },
   {
     id: 3,
     title: "Lorem ipsum dolor sit",
     desc: "Exercitation quis mollit fugiat incididunt eu adipisicing esse exercitation elit.",
     imgPath: Book3,
+    price: 2500,
+    author: "Emily"
   },
 ];
 

@@ -19,11 +19,13 @@ const UnAuthenticatedScreen = (props) => {
   const pathname = usePathname();
   const handleAddToCart = useCallback(
     (itemShape) => {
-      const { id: idBook, desc, imgPath, title } = itemShape;
+      const { id: idBook, desc, imgPath, title, price, author } = itemShape;
       const newItem = {
         id: idBook,
         item: title,
         img: imgPath,
+        price: price,
+        author,
       };
 
       addToCart(newItem);

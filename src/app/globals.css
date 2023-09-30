@@ -165,6 +165,41 @@ html {
   color: inherit;
 }
 
+.cart-item-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.cart-payment {
+  width: 100%;
+}
+
+.cart-payment > :nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-payment > :nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-price {
+  color: #44b200;
+  margin-top: 10px;
+}
+
+.cart-divider {
+  margin-bottom: 40px;
+}
+
+.payment-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
 .items-list-product {
   display: flex;
   /* border: 1px solid red; */
