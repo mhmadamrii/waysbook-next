@@ -90,6 +90,7 @@ export default function RootExplorer({ searchParams }) {
         }, 1500);
       }
     } catch (error) {
+      console.log('errornya', { error })
       setIsLoading(false);
       console.log({ error });
       enqueueSnackbar(error?.response?.data?.message, {

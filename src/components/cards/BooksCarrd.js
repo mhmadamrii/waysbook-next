@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 });
 
 export default function BooksCard({ onAddToCart }) {
-  console.log('dummies', dummiesThumbnailBooks);
   const classes = useStyles();
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const { user } = React.useContext(AuthContext);
@@ -61,7 +60,6 @@ export default function BooksCard({ onAddToCart }) {
     <div className="books-card-wrapper">
       <div>
         {dummiesThumbnailBooks?.map((card, idx) => {
-          console.log('actually', card)
           return (
             <div className="cards-thumbnail" key={idx}>
               <div>
