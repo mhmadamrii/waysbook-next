@@ -115,7 +115,7 @@ export default function RootExplorer({ searchParams }) {
       const baseURL =
         'https://express-creation-mhmadamrii.vercel.app/api/v1/sign-up';
       const response = await axios.post(baseURL, payload);
-      if (response?.status === 200) {
+      if (response?.status === 201) {
         setIsLoading(false);
         enqueueSnackbar('Register success', {
           variant: 'success',
